@@ -6,8 +6,12 @@
 //          取代 v600.62 的純網路優先(每次開啟等網路抓 index.html,行動網路冷啟動慢)。
 // v600.117: ERP 內網 API(http 內網 IP)完全不經過 SW——原本掉進「其他靜態資源」處理,
 //          在 SW 更新/啟動接管期會造成第一次 fetch 失敗,要多按幾次匯入才成功。改為直接放行走原生網路。
+// v600.129: R17 安全性修正——supabase-js 改釘死確切版本(2.112.0)+ 確切檔案路徑,
+//          搭配 index.html 加的 SRI 完整性驗證。這裡的快取網址要跟 index.html 引用的
+//          網址完全一致，否則會快取到舊網址、離線時反而讀不到(取不到，不是壞掉，只是
+//          白白浪費這格快取)。之後升級 supabase-js 版本時，這裡跟 index.html 要一起改。
 // ============================================================
-const CACHE_NAME = 'SUPAtodo-v600.128';   // 每次改版必同步 bump
+const CACHE_NAME = 'SUPAtodo-v600.129';   // 每次改版必同步 bump
 // 程式殼層:SWR(先快取秒開,背景更新);首次無快取時走網路
 const SHELL_ASSETS = [
   './',
@@ -22,7 +26,7 @@ const STATIC_ASSETS = [
 // 外部資源:非致命
 // v600 重要:supabase-js 必須快取——離線開 App 時認證閘才起得來(getSession 走本機)
 const EXTRA_ASSETS = [
-  'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2'
+  'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.112.0/dist/umd/supabase.js'
 ];
 self.addEventListener('install', e => {
   self.skipWaiting();
