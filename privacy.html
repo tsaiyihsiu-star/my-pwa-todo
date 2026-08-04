@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>宜修待辦 — 隱私權政策</title>
+<style>
+  body { font-family: -apple-system, "Segoe UI", "Microsoft JhengHei", sans-serif;
+         line-height: 1.8; color: #2c2c2e; max-width: 760px; margin: 0 auto;
+         padding: 32px 20px; background: #fafafa; }
+  h1 { font-size: 1.6em; border-bottom: 2px solid #2e7d32; padding-bottom: 10px; }
+  h2 { font-size: 1.2em; margin-top: 32px; color: #2e7d32; }
+  .meta { color: #666; font-size: 0.9em; margin-bottom: 24px; }
+  ul { padding-left: 22px; }
+  li { margin: 6px 0; }
+  code { background: #eee; padding: 1px 6px; border-radius: 4px; font-size: 0.9em; }
+  .box { background: #fff; border: 1px solid #e0e0e0; border-radius: 10px;
+         padding: 4px 20px; margin: 16px 0; }
+  footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid #ddd;
+           color: #888; font-size: 0.85em; }
+</style>
+</head>
+<body>
+
+<h1>宜修待辦 隱私權政策</h1>
+<p class="meta">生效日期：2026 年 7 月 8 日</p>
+
+<p>「宜修待辦」（以下稱「本服務」）是一套供維護／叫修人員使用的任務管理工具。本服務由 <strong>蔡宜修</strong>（個人開發者）開發與維運，係為因應公司內部作業需求所開發之工具，<strong>非屬公司之商業產品</strong>，著作權歸開發者所有。本政策說明本服務如何蒐集、使用與保護您的資料。使用本服務即表示您已閱讀並同意本政策。</p>
+
+<h2>一、我們蒐集哪些資料</h2>
+<div class="box">
+<p><strong>1. Google 帳號基本資料</strong></p>
+<ul>
+  <li>當您以 Google 帳號登入時，我們取得您的電子郵件地址與基本個人資料（姓名、頭像），用於識別您的帳號與建立您的專屬資料空間。</li>
+</ul>
+<p><strong>2. 您在本服務中建立的資料</strong></p>
+<ul>
+  <li>任務內容、客戶與聯絡資料、分類、外部連結、設定偏好等，由您主動輸入。</li>
+  <li>（如屬公司員工）您輸入用於身分驗證的公司統一編號與員工工號。</li>
+</ul>
+<p><strong>3. 照片</strong></p>
+<ul>
+  <li>您在任務中拍攝或上傳的照片，儲存於<strong>您自己的 Google 雲端硬碟</strong>（見下方說明）。</li>
+</ul>
+<p><strong>4. 使用紀錄</strong></p>
+<ul>
+  <li>為維持資料同步與備份機制，記錄同步時間、備份次數等技術性紀錄。</li>
+</ul>
+</div>
+
+<h2>二、資料儲存位置</h2>
+<ul>
+  <li><strong>任務／客戶／聯絡等資料</strong>：儲存於 Supabase（雲端資料庫服務）。每位使用者的資料以帳號隔離，僅您本人（及您所屬公司之管理者於必要範圍內）可存取。</li>
+  <li><strong>照片</strong>：透過 Google Drive 權限（<code>drive.file</code>）儲存於<strong>您本人的 Google 雲端硬碟</strong>中，存放在本服務建立的專屬資料夾。本服務僅能存取由本服務自己建立的檔案，<strong>無法讀取您雲端硬碟中的其他任何檔案</strong>。</li>
+  <li><strong>部分快取</strong>：為離線可用與效能，部分資料暫存於您裝置的瀏覽器本機儲存（localStorage）。</li>
+</ul>
+
+<h2>三、Google 使用者資料的使用與權限</h2>
+<div class="box">
+<p>本服務要求以下 Google 權限，並僅用於對應功能：</p>
+<ul>
+  <li><code>userinfo.email</code> / <code>userinfo.profile</code>：識別您的帳號。</li>
+  <li><code>drive.file</code>：<strong>僅能存取本服務自己建立的檔案</strong>，用於儲存與讀取您的任務照片。本服務不會、也在技術上無法存取您雲端硬碟中的其他檔案。</li>
+</ul>
+<p>本服務對 Google 使用者資料的使用，遵循 <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank">Google API 服務使用者資料政策</a>，包含「有限使用（Limited Use）」規範。我們不會將 Google 使用者資料用於廣告，也不會將其出售或轉讓予第三方。</p>
+</div>
+
+<h2>四、第三方服務</h2>
+<ul>
+  <li><strong>Supabase</strong>：提供資料庫與帳號驗證。</li>
+  <li><strong>Google（登入與雲端硬碟）</strong>：提供帳號登入與照片儲存。</li>
+  <li><strong>Google Gemini AI（選用）</strong>：若您啟用 AI 輔助功能，需自行提供您個人的 API 金鑰；相關請求由您的金鑰直接送往 Google，本服務不代為保存或轉送您的內容至其他方。此功能為選用，不啟用則不涉及。</li>
+</ul>
+
+<h2>五、我們不會做的事</h2>
+<ul>
+  <li>不販售、不出租、不與第三方交換您的個人資料。</li>
+  <li>不將您的資料用於廣告用途。</li>
+  <li>不存取您 Google 雲端硬碟中非本服務建立的檔案。</li>
+</ul>
+
+<h2>六、資料的保留與刪除</h2>
+<ul>
+  <li>您可隨時在應用程式內刪除您的任務、客戶等資料。</li>
+  <li>已完成任務與已刪除項目，系統依內建清理規則於一定期間後自動清除。</li>
+  <li>照片存放於您自己的 Google 雲端硬碟，您可自行至雲端硬碟刪除。</li>
+  <li>如需刪除您的帳號及所有相關資料，請透過下方聯絡方式與我們聯繫。</li>
+</ul>
+
+<h2>七、資料安全</h2>
+<ul>
+  <li>資料傳輸以 HTTPS 加密。</li>
+  <li>資料庫採帳號層級隔離（Row Level Security），確保各使用者僅能存取自身資料。</li>
+  <li>Google 授權權杖以安全機制管理，敏感金鑰不暴露於前端。</li>
+</ul>
+
+<h2>八、政策變更</h2>
+<p>本政策如有更新，將於本頁公告並更新生效日期。</p>
+
+<h2>九、聯絡我們</h2>
+<p>如對本隱私權政策有任何疑問，或需行使資料存取／刪除權利，請聯絡：</p>
+<ul>
+  <li>營運者：<strong>蔡宜修</strong>（個人開發者）</li>
+  <li>電子郵件：<strong>tsaiyihsiu@gmail.com</strong></li>
+</ul>
+
+<footer>
+  宜修待辦 · 本頁為服務之隱私權政策<br>
+  最後更新：2026 年 7 月 8 日
+</footer>
+
+</body>
+</html>

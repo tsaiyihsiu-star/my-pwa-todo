@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>宜修待辦 - 操作教學（新同事入門）</title>
+<style>
+  :root{
+    --blue:#3478F6; --orange:#FF9500; --green:#34C759; --red:#FF3B30;
+    --teal:#0891B2; --purple:#7C3AED; --amber:#B45309;
+    --ink:#1d1d1f; --gray:#6e6e73; --line:#E5E5EA; --bg:#F2F2F7; --card:#fff;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; font-family:-apple-system,BlinkMacSystemFont,"Microsoft JhengHei","PingFang TC",sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.7; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:820px; margin:0 auto; padding:0 16px 80px;}
+  header{
+    background:linear-gradient(135deg,#3478F6,#0891B2); color:#fff;
+    padding:36px 24px 30px; text-align:center; margin-bottom:8px;
+  }
+  header h1{margin:0 0 6px; font-size:26px; letter-spacing:.5px;}
+  header p{margin:0; opacity:.92; font-size:15px;}
+  .toc{
+    background:var(--card); border-radius:14px; padding:18px 22px; margin:18px 0;
+    box-shadow:0 1px 3px rgba(0,0,0,.06);
+  }
+  .toc h2{margin:0 0 10px; font-size:15px; color:var(--gray); font-weight:700;}
+  .toc ol{margin:0; padding-left:22px;}
+  .toc li{margin:4px 0;}
+  .toc a{color:var(--blue); text-decoration:none;}
+  .toc a:hover{text-decoration:underline;}
+  section{
+    background:var(--card); border-radius:14px; padding:22px 24px; margin:16px 0;
+    box-shadow:0 1px 3px rgba(0,0,0,.06);
+  }
+  section h2{
+    font-size:20px; margin:0 0 4px; display:flex; align-items:center; gap:10px;
+    padding-bottom:12px; border-bottom:2px solid var(--line);
+  }
+  .num{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:30px; height:30px; border-radius:50%; background:var(--blue); color:#fff;
+    font-size:15px; font-weight:700; flex-shrink:0;
+  }
+  h3{font-size:16px; margin:20px 0 8px; color:var(--ink);}
+  .step{
+    display:flex; gap:12px; margin:10px 0; padding:12px 14px;
+    background:#F8F9FB; border-radius:10px; border-left:3px solid var(--blue);
+  }
+  .step .n{
+    flex-shrink:0; width:24px; height:24px; border-radius:50%;
+    background:var(--blue); color:#fff; font-size:13px; font-weight:700;
+    display:flex; align-items:center; justify-content:center; margin-top:1px;
+  }
+  .step .t{flex:1;}
+  .tip{
+    background:#FFF7E8; border-left:3px solid var(--orange); border-radius:8px;
+    padding:10px 14px; margin:12px 0; font-size:14.5px;
+  }
+  .tip b{color:var(--amber);}
+  .warn{
+    background:#FFF0EF; border-left:3px solid var(--red); border-radius:8px;
+    padding:10px 14px; margin:12px 0; font-size:14.5px;
+  }
+  .warn b{color:var(--red);}
+  .pill{
+    display:inline-block; padding:1px 9px; border-radius:20px; font-size:13px;
+    font-weight:600; color:#fff; vertical-align:middle;
+  }
+  .pill.blue{background:var(--blue);} .pill.orange{background:var(--orange);}
+  .pill.green{background:var(--green);} .pill.teal{background:var(--teal);}
+  .pill.purple{background:var(--purple);} .pill.amber{background:var(--amber);}
+  kbd{
+    background:#EEE; border:1px solid #CCC; border-bottom-width:2px; border-radius:5px;
+    padding:1px 7px; font-size:13px; font-family:inherit; color:var(--ink);
+  }
+  .placeholder{
+    background:#F0F1F3; border:1px dashed #C7C7CC; border-radius:8px;
+    padding:14px; text-align:center; color:var(--gray); font-size:13px; margin:10px 0;
+  }
+  footer{text-align:center; color:var(--gray); font-size:13px; margin-top:30px;}
+  b{color:var(--ink);}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>宜修待辦・操作教學</h1>
+  <p>新同事入門指南｜第一次使用看這裡</p>
+</header>
+
+<div class="wrap">
+
+  <div class="toc">
+    <h2>目錄</h2>
+    <ol>
+      <li><a href="#s1">綁定與登入</a></li>
+      <li><a href="#s2">認識主畫面</a></li>
+      <li><a href="#s3">新增與完成任務</a></li>
+      <li><a href="#s4">分類功能</a></li>
+      <li><a href="#s5">客戶管理</a></li>
+      <li><a href="#s6">從 ERP 匯入（含 API Key 設定）</a></li>
+      <li><a href="#s7">用 Excel 匯入</a></li>
+    </ol>
+  </div>
+
+  <!-- 1 -->
+  <section id="s1">
+    <h2><span class="num">1</span>綁定與登入</h2>
+    <p>第一次使用需要用你的 Google 帳號登入，並綁定公司身分。綁定一次，之後用同一個 Google 帳號登入就會自動進入，不用再輸入。</p>
+
+    <div class="step"><div class="n">1</div><div class="t">用手機或電腦瀏覽器打開 App 網址（向主管索取）。</div></div>
+    <div class="step"><div class="n">2</div><div class="t">點<b>「使用 Google 登入」</b>，選擇你的 Google 帳號。</div></div>
+    <div class="step"><div class="n">3</div><div class="t">第一次登入會出現綁定畫面，依欄位輸入公司給你的 <b>統一編號</b> 與 <b>工號</b>，送出綁定。</div></div>
+    <div class="step"><div class="n">4</div><div class="t">綁定成功後就進入主畫面。下次用同一個 Google 帳號登入，不會再要求輸入統編與工號。</div></div>
+
+    <div class="tip"><b>小提醒：</b>統編與工號由管理者事先建立在系統名冊中。若你不知道自己的統編或工號，請向主管或管理者索取。</div>
+    <div class="warn"><b>綁定失敗？</b>畫面會顯示錯誤訊息。請先確認統編與工號輸入正確（沒有多打空格），若仍失敗，請聯繫管理者確認名冊中是否已建立你的資料。</div>
+
+    <div class="placeholder">［此處可放：登入畫面 / 綁定畫面 截圖］</div>
+  </section>
+
+  <!-- 2 -->
+  <section id="s2">
+    <h2><span class="num">2</span>認識主畫面</h2>
+    <p>登入後看到的就是你的待辦清單。左側（或下方）有一排常用按鈕：</p>
+    <div class="step"><div class="n">＋</div><div class="t"><b>左上角「＋」</b>：新增任務（見第 3 節）。</div></div>
+    <div class="step"><div class="n">🏷</div><div class="t"><b>分類</b>：管理任務分類（見第 4 節）。</div></div>
+    <div class="step"><div class="n">👤</div><div class="t"><b>客戶</b>（人形圖示）：客戶管理（見第 5 節）。</div></div>
+    <div class="step"><div class="n">⚙</div><div class="t"><b>設定</b>（齒輪圖示）：ERP／Excel 匯入、API Key、登出等（見第 6、7 節）。</div></div>
+    <div class="tip"><b>小提醒：</b>點日期可看當天任務；完成的任務會收進「已完成」分類，不會不見。</div>
+    <div class="placeholder">［此處可放：主畫面與側欄按鈕 截圖］</div>
+  </section>
+
+  <!-- 3 -->
+  <section id="s3">
+    <h2><span class="num">3</span>新增與完成任務</h2>
+
+    <h3>新增任務 — 點按「＋」（快速記一筆）</h3>
+    <div class="step"><div class="n">1</div><div class="t"><b>點按左上角「＋」</b>，叫出快速新增。</div></div>
+    <div class="step"><div class="n">2</div><div class="t">輸入任務內容，送出。適合「趕快記一筆、之後再補細節」。</div></div>
+
+    <h3>新增任務 — 長按「＋」（完整新增）</h3>
+    <div class="step"><div class="n">1</div><div class="t"><b>長按左上角「＋」</b>，叫出完整新增。</div></div>
+    <div class="step"><div class="n">2</div><div class="t">可一次填齊：任務內容、<b>到期日</b>、<b>優先序</b>、<b>備註</b>、<b>分類</b>、<b>客戶</b>等。</div></div>
+    <div class="step"><div class="n">3</div><div class="t">選客戶時可直接搜尋既有客戶（見第 5 節）。填好後儲存。</div></div>
+
+    <div class="tip"><b>點按 vs 長按：</b>點按＝快速記一筆；長按＝完整填寫。趕時間就點按，要排細節就長按。</div>
+
+    <h3>完成任務</h3>
+    <div class="step"><div class="n">1</div><div class="t"><b>點按任務</b>，叫出快捷選單。</div></div>
+    <div class="step"><div class="n">2</div><div class="t">選「完成」，任務會收進「已完成」分類（不是刪除，資料還在）。</div></div>
+    <div class="step"><div class="n">3</div><div class="t">要還原：切到「已完成」分類，找到該任務，點勾即可還原。</div></div>
+
+    <div class="tip"><b>完成 vs 刪除：</b>「完成」是把任務收起來、之後找得回；「刪除」才是真的移除。日常結案用「完成」即可。</div>
+    <div class="placeholder">［此處可放：快速新增 / 完整新增 / 任務選單 截圖］</div>
+  </section>
+
+  <!-- 4 -->
+  <section id="s4">
+    <h2><span class="num">4</span>分類功能</h2>
+    <p>分類用來把任務分門別類（例如：保養、合約、一般…），方便你依類別檢視。</p>
+    <div class="step"><div class="n">1</div><div class="t">點側欄的<b>「分類」</b>按鈕，打開分類管理。</div></div>
+    <div class="step"><div class="n">2</div><div class="t">在下方輸入框輸入分類名稱（如「保養」），按<b>「新增」</b>（或按 <kbd>Enter</kbd>）。</div></div>
+    <div class="step"><div class="n">3</div><div class="t">現有分類可在列表中管理（改名、排序、設定顏色等）。</div></div>
+    <div class="step"><div class="n">4</div><div class="t">調整完按<b>「完成」</b>才會生效。</div></div>
+    <div class="tip"><b>小提醒：</b>新增或編輯任務時，就能從清單選擇這裡建立的分類。</div>
+    <div class="placeholder">［此處可放：分類管理畫面 截圖］</div>
+  </section>
+
+  <!-- 5 -->
+  <section id="s5">
+    <h2><span class="num">5</span>客戶管理</h2>
+    <p>把常往來的客戶建進系統，新增任務時就能直接選客戶、帶出聯絡資料。</p>
+    <div class="step"><div class="n">1</div><div class="t">點側欄的<b>「客戶」</b>（人形圖示），打開客戶管理。</div></div>
+    <div class="step"><div class="n">2</div><div class="t">點<b>左上角「＋」</b>展開新增客戶，輸入客戶名稱後新增。</div></div>
+    <div class="step"><div class="n">3</div><div class="t">點<b>右上角搜尋圖示</b>可快速找客戶。</div></div>
+    <div class="step"><div class="n">4</div><div class="t">點進客戶可管理其聯絡資料（地址、電話等）。</div></div>
+    <div class="tip"><b>小提醒：</b>大量客戶不用手動一筆筆建，可用第 6 節「ERP 匯入」或第 7 節「Excel 匯入」批次帶入。</div>
+    <div class="placeholder">［此處可放：客戶管理 / 新增客戶 截圖］</div>
+  </section>
+
+  <!-- 6 -->
+  <section id="s6">
+    <h2><span class="num">6</span>從 ERP 匯入 <span class="pill teal">電腦版</span></h2>
+    <p>可從公司 ERP 直接匯入 <b>保養清單</b>、<b>合約到期</b>、<b>客戶聯絡資料</b>，省去手動輸入。</p>
+
+    <div class="warn"><b>使用前提：</b>ERP 匯入只能在<b>電腦</b>上、且<b>連著公司內網（公司 WiFi）</b>時使用。手機因連線限制無法使用，會自動隱藏此功能。</div>
+
+    <h3>第一步：設定 ERP API Key（只需設定一次）</h3>
+    <div class="step"><div class="n">1</div><div class="t">點側欄<b>齒輪（設定）</b>，打開設定。</div></div>
+    <div class="step"><div class="n">2</div><div class="t">找到<b>「ERP API Key」</b>，點 <span class="pill amber">🔑 設定（ERP 匯入・公司提供）</span>。</div></div>
+    <div class="step"><div class="n">3</div><div class="t">貼上<b>公司提供的 API Key</b>，按確定儲存。</div></div>
+    <div class="tip"><b>小提醒：</b>設定好 Key 之後，設定頁的「從 ERP 匯入」按鈕才會出現／可用。API Key 向公司或管理者索取。</div>
+
+    <h3>第二步：執行匯入</h3>
+    <p>設定頁的「從 ERP 資料庫匯入」區有三顆按鈕：</p>
+    <div class="step"><div class="n">A</div><div class="t"><span class="pill amber">⬇ 從 ERP 匯入保養清單</span></div></div>
+    <div class="step"><div class="n">B</div><div class="t"><span class="pill purple">⬇ 從 ERP 匯入合約到期</span></div></div>
+    <div class="step"><div class="n">C</div><div class="t"><span class="pill teal">⬇ 從 ERP 匯入客戶聯絡資料</span></div></div>
+
+    <div class="step"><div class="n">1</div><div class="t">點你要的匯入按鈕。</div></div>
+    <div class="step"><div class="n">2</div><div class="t">保養／合約需<b>選擇年月</b>；客戶聯絡資料<b>不需選月份</b>。</div></div>
+    <div class="step"><div class="n">3</div><div class="t">按<b>「查詢」</b>，系統會抓取資料並顯示<b>預覽</b>（每筆是新增／更新／跳過等）。</div></div>
+    <div class="step"><div class="n">4</div><div class="t">確認預覽沒問題後，按<b>「匯入」</b>。完成後會顯示結果統計。</div></div>
+
+    <div class="tip"><b>放心匯入：</b>系統會自動比對，已經手動修改過的資料不會被蓋掉；同名但不同編號的客戶會自動跳過並提示，不會覆蓋既有客戶。</div>
+    <div class="placeholder">［此處可放：ERP API Key 設定 / 匯入預覽畫面 截圖］</div>
+  </section>
+
+  <!-- 7 -->
+  <section id="s7">
+    <h2><span class="num">7</span>用 Excel 匯入 <span class="pill blue">電腦版</span></h2>
+    <p>沒有 ERP、或想用自己的 Excel 檔批次帶入時，可用 Excel／CSV 匯入。</p>
+    <div class="step"><div class="n">1</div><div class="t">點側欄<b>齒輪（設定）</b>，打開設定。</div></div>
+    <div class="step"><div class="n">2</div><div class="t">找到匯入區，可選<b>「匯入任務（Excel / CSV）」</b>或<b>「匯入客戶（聯絡資料 Excel）」</b>。</div></div>
+    <div class="step"><div class="n">3</div><div class="t">匯入前，先點該項目下方的 <span class="pill blue">📋 匯入前要準備哪些欄位？</span>，照說明準備好 Excel 欄位。</div></div>
+    <div class="step"><div class="n">4</div><div class="t">選擇你的 Excel／CSV 檔，系統會讀取並匯入。</div></div>
+    <div class="tip"><b>小提醒：</b>電話會自動整理成純數字格式；系統會避免匯入重複資料。準備檔案時照「要準備哪些欄位」的說明做，成功率最高。</div>
+    <div class="placeholder">［此處可放：Excel 匯入 / 欄位說明 截圖］</div>
+  </section>
+
+  <footer>
+    宜修待辦 操作教學（新同事入門版）<br>
+    有操作問題，請聯繫管理者或系統窗口。
+  </footer>
+
+</div>
+</body>
+</html>
