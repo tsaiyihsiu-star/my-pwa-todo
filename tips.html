@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>宜修待辦 - 使用技巧</title>
+<style>
+  :root{
+    --blue:#3478F6; --orange:#FF9500; --green:#34C759; --red:#FF3B30;
+    --teal:#0891B2; --purple:#7C3AED; --amber:#B45309;
+    --ink:#1d1d1f; --gray:#6e6e73; --line:#E5E5EA; --bg:#F2F2F7; --card:#fff;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; font-family:-apple-system,BlinkMacSystemFont,"Microsoft JhengHei","PingFang TC",sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.7; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:820px; margin:0 auto; padding:0 16px 80px;}
+  header{
+    background:linear-gradient(135deg,var(--orange),#B45309); color:#fff;
+    padding:36px 24px 30px; text-align:center; margin-bottom:8px;
+  }
+  header h1{margin:0 0 6px; font-size:26px; letter-spacing:.5px;}
+  header p{margin:0; opacity:.92; font-size:15px;}
+  header .legend{margin-top:14px; display:flex; gap:16px; justify-content:center; flex-wrap:wrap;}
+  header .legend span{font-size:12.5px; opacity:.92; display:flex; align-items:center; gap:5px;}
+  header .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;background:#fff;}
+
+  /* 快速索引：橫向可滑動的標籤列，取代guide.html的一次性目錄——
+     這裡內容會持續增修、常態回頭查，比較適合跳著看不是從頭讀到尾 */
+  nav{
+    position:sticky; top:0; z-index:10;
+    background:var(--bg);
+    border-bottom:1px solid var(--line);
+    padding:10px 14px; margin:0 -16px 8px;
+    display:flex; gap:8px; overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+  }
+  nav::-webkit-scrollbar{display:none;}
+  nav a{
+    flex-shrink:0;
+    font-size:13px; font-weight:700; color:var(--blue);
+    background:rgba(52,120,246,.09);
+    padding:7px 14px; border-radius:100px;
+    text-decoration:none; white-space:nowrap;
+  }
+  nav a:active{background:rgba(52,120,246,.18);}
+
+  /* 摺疊段落，比照 guide.html 的 section 卡片樣式 */
+  details.sec{
+    background:var(--card); border-radius:14px; margin:16px 0;
+    box-shadow:0 1px 3px rgba(0,0,0,.06);
+    overflow:hidden; scroll-margin-top:56px;
+  }
+  details.sec summary{
+    list-style:none; cursor:pointer;
+    padding:20px 24px;
+    display:flex; align-items:center; gap:12px;
+  }
+  details.sec summary::-webkit-details-marker{display:none;}
+  .num{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:30px; height:30px; border-radius:50%; background:var(--blue); color:#fff;
+    font-size:15px; font-weight:700; flex-shrink:0;
+  }
+  details.sec summary .stitle{font-size:18px; font-weight:700; flex:1; line-height:1.4;}
+  details.sec summary .subline{display:block; font-size:13px; color:var(--gray); font-weight:500; margin-top:2px;}
+  details.sec summary .chev{width:20px; height:20px; color:var(--gray); flex-shrink:0; transition:transform .2s;}
+  details.sec[open] summary .chev{transform:rotate(180deg);}
+  .sec-body{padding:0 24px 22px;}
+  .sec-body h3{font-size:16px; margin:18px 0 8px; color:var(--ink);}
+
+  /* 技巧卡片 */
+  .tip{
+    background:#F8F9FB; border-radius:10px; border-left:3px solid var(--blue);
+    padding:13px 15px; margin-top:10px; font-size:14.5px; line-height:1.75;
+  }
+  .tip:first-child{margin-top:0;}
+  .tip .tip-h{font-weight:700; font-size:15px; margin-bottom:4px; color:var(--ink);}
+
+  .note-tip{
+    background:#FFF7E8; border-left:3px solid var(--orange); border-radius:8px;
+    padding:10px 14px; margin-top:10px; font-size:14px;
+  }
+  .note-tip b{color:var(--amber);}
+  .note-warn{
+    background:#FFF0EF; border-left:3px solid var(--red); border-radius:8px;
+    padding:10px 14px; margin-top:10px; font-size:14px;
+  }
+  .note-warn b{color:var(--red);}
+
+  .pill{
+    display:inline-block; padding:1px 9px; border-radius:20px; font-size:12.5px;
+    font-weight:600; color:#fff; vertical-align:middle;
+  }
+  .pill.orange{background:var(--orange);} .pill.gray{background:var(--gray);}
+
+  code{
+    background:rgba(0,0,0,.06); padding:1px 6px; border-radius:4px;
+    font-size:13px; font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  }
+
+  footer{text-align:center; color:var(--gray); font-size:13px; margin-top:30px;}
+  b{color:var(--ink);}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>宜修待辦・使用技巧</h1>
+  <p>不是操作手冊，是「怎麼用得更聰明」的技巧整理</p>
+  <div class="legend">
+    <span><span class="dot" style="opacity:.5"></span>假設你已經會基本操作，重點放在什麼情境該用什麼技巧</span>
+  </div>
+</header>
+
+<div class="wrap">
+
+<nav>
+  <a href="#s1">基本資料</a>
+  <a href="#s2">資料匯入</a>
+  <a href="#s3">週期任務</a>
+  <a href="#s4">保養路線</a>
+  <a href="#s5">日常技巧</a>
+  <a href="#s6">待補充</a>
+</nav>
+
+<details class="sec" id="s1" open>
+  <summary>
+    <div class="num">1</div>
+    <div class="stitle">基本資料的建立順序<span class="subline">會影響後面好不好用</span></div>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+  </summary>
+  <div class="sec-body">
+    <div class="tip">分類、客戶、聯絡資料這三層是所有其他功能（路線排序、優先值判斷、聚合提醒）的地基，<b>建的順序跟品質，直接決定後面用起來順不順</b>。</div>
+    <div class="tip">分類是「優先值比較」跟「路線排序」的分組邊界——同分類才會互相比較、互相排序。分類切太細，同一批工作會被拆散；切太粗，優先值排序會失去意義。</div>
+    <div class="tip">客戶如果有分店、多據點，<b>設成主/子關係</b>而不是各自獨立建檔——這樣路線排序、任務聚合才會把同一間公司的事情算在一起，不會漏掉。反過來，如果只是剛好同名的不同公司，千萬不要設成子客戶，會把不相干的資料混在一起。</div>
+    <div class="note-tip"><b>推論建議：</b>客戶資料量大時，直接用 ERP 匯入建檔，比逐筆手動輸入快很多，而且系統會依 ERP 客戶編號自動歸戶——同名不同編號的客戶會被自動偵測、不會誤蓋，這代表你不用逐筆檢查有沒有打錯字或建重複。</div>
+  </div>
+</details>
+
+<details class="sec" id="s2">
+  <summary>
+    <div class="num">2</div>
+    <div class="stitle">資料匯入<span class="subline">省下的不只是輸入時間</span></div>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+  </summary>
+  <div class="sec-body">
+    <div class="tip">ERP 匯入（電腦版限定）省下的不只是「不用打字」，更重要的是<b>避免人工建檔時的判斷失誤</b>——例如客戶編號自動歸戶這件事，靠人工很容易因為公司全銜跟簡稱打法不同、就誤判成兩個不同客戶。保養、合約任務匯入也是同樣道理：排程直接從 ERP 帶過來，不用自己對照紙本或另一套系統重新輸入一次。</div>
+    <div class="note-warn"><b>使用前提：</b>這幾項匯入功能都需要先設定 ERP API Key，這組 Key 要到公司內部網路的 <code>http://192.168.3.139:8000/API/</code> 申請——因為是內網位置，只能在公司內部連線的電腦上操作，不管是申請 Key 還是之後實際匯入，都一樣受限於電腦版＋內網這兩個條件。</div>
+  </div>
+</details>
+
+<details class="sec" id="s3">
+  <summary>
+    <div class="num">3</div>
+    <div class="stitle">週期性任務<span class="subline">省下的是「記得要排」這件事本身</span></div>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+  </summary>
+  <div class="sec-body">
+    <div class="tip">固定會重複發生的工作（例如每月固定保養），設成週期範本之後，<b>你不用再記得「這個月該排了」</b>——系統會自動補產生，而且用「水位線」記錄產生到哪一天，就算多台裝置同時開、或斷線重連，也不會重複生出兩份一樣的任務，不用擔心手滑點兩次。</div>
+    <div class="tip">
+      <div class="tip-h">實際案例</div>
+      月計畫、季核心計畫、每週四固定打費用單申請、每半年檢查辦公室管理費帳單跟繳費——這幾類共通點是「內容跟頻率都固定，不用每次臨時想」，正好是週期任務省下「記得要排」這件事的典型情境。跟臨時性、一次性的工作分開來看：<b>規律重複的</b>設週期範本，<b>單次性的</b>就不用特地設週期，直接建單筆任務就好。
+    </div>
+  </div>
+</details>
+
+<details class="sec" id="s4">
+  <summary>
+    <div class="num">4</div>
+    <div class="stitle">保養路線規劃<span class="subline">AI 排的是「大方向」，你補的是「熟悉度」</span></div>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+  </summary>
+  <div class="sec-body">
+    <div class="note-warn"><span class="pill orange" style="margin-right:6px;">藏得比較深</span>大部分同事其實不知道有這個功能——入口不是畫面上一顆看得到的按鈕，而是<b>長壓「今天」（或任何篩選標題文字，例如切到「保養」分類時顯示的標題）半秒</b>，才會跳出隱藏選單，裡面才看得到「路線排序」「AI 重新排路線」這些選項。</div>
+    <div class="tip"><b>AI 排序解決的問題</b>：手動排幾十個客戶的拜訪順序很花時間，AI 依地理位置（縣市由北到南、同區聚在一起）先排出一個大致合理的順序，省下從零開始排的時間。</div>
+    <div class="tip"><b>但 AI 沒有真實路況資料</b>，只能依地址文字判斷大概區域，區內細節順序常常不夠貼合實際路況——這時候拖曳微調的價值就出來了：你知道哪條路比較順、哪個客戶今天特別急，這些「在地知識」是 AI 排不出來的，微調一次之後<b>這個順序會被記住</b>，不用每次重排。</div>
+    <div class="tip">排序是依你當下篩選的分類分別記住的——這代表「保養」跟「合約」可以各自維護一套順序，互不干擾，你不用每次切分類都重排一次。</div>
+    <div class="tip"><b>排除功能</b>的技巧：不是所有任務都需要親自跑一趟（例如純電話聯絡的），排路線前先把這種任務排除掉，AI 排序跟地圖導航才不會被不相干的站點稀釋掉真正要跑的路線。</div>
+    <div class="tip">
+      <div class="tip-h">路線排序是規劃工具，優先值才是實際操作用的順序</div>
+      AI 排路線、拖曳微調，這整套「路線排序模式」的用途是<b>算出一個合理的拜訪順序</b>，不是你平常工作時盯著看的畫面——你實際的做法是：路線排序模式排定順序後，回頭把每個保養任務的<b>優先值依序設成 P1、P2、P3……</b>，對應排定的拜訪先後。這樣一來，你平常在用的<b>傳統排序</b>自然就會照著調整好的路線順序顯示。
+      <br><br>
+      換句話說：路線排序模式<b>用完即丟</b>，真正每天在用的排序依據是優先值。這也是為什麼「優先值自動去重」這個機制特別重要——你是拿優先值當「這一趟保養的第幾站」在用，系統自動避免撞號、連鎖往後推的機制，剛好保護了這套排序邏輯不會被意外打亂。
+    </div>
+  </div>
+</details>
+
+<details class="sec" id="s5">
+  <summary>
+    <div class="num">5</div>
+    <div class="stitle">日常操作裡真正省時間的技巧</div>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+  </summary>
+  <div class="sec-body">
+    <div class="tip">
+      <div class="tip-h">快速新增用 AI 解析，語音輸入更省事</div>
+      一句話裡同時講好幾件事，AI 會自動拆成多筆任務、各自判斷分類跟日期，你不用先想好「這個要選哪個分類」再輸入。用手機的語音輸入直接講一大段、講完點 AI 解析，比自己打字快，而且客戶名稱如果因為口音或聽寫誤差被辨識成同音錯字（例如正確客戶是「協鉦」，語音辨識卻聽成「寫真」），AI 會對照你既有的客戶清單自動修正回正確的客戶名稱。
+    </div>
+    <div class="tip">
+      <div class="tip-h">輸入框不限於自己打字或講話</div>
+      客戶用 Email 或簡訊描述需求時，直接把整段內容複製貼上進快速新增的輸入框，不用自己重新消化、摘要成一句話——AI 一樣會從這段文字裡判斷出任務內容跟日期。
+      <div class="note-tip"><b>推論建議：</b>如果原始內容裡沒有明確提到客戶名稱，貼上之後手動補一下客戶名稱再送出解析，準確率會更好。</div>
+    </div>
+    <div class="tip">
+      <div class="tip-h">同客戶任務聚合，省下的是「多跑一趟」</div>
+      任務卡片上如果同一個客戶還有其他未完成的任務，會有徽章提醒。真正的價值不是「看到還有什麼任務」，是<b>趁著人已經要去這個客戶那邊，把原本排在別天的小任務一併拉來今天做掉</b>——少跑一趟就是省一趟的時間跟油錢，尤其對外勤性質的工作特別有感。
+    </div>
+    <div class="tip">
+      <div class="tip-h">抬頭的搜尋功能，實務上已經比較少用到</div>
+      早期設計搜尋，是為了找特定客戶或任務名稱，但同客戶任務聚合功能上線後，這個需求大部分被取代掉了——想知道某個客戶還有什麼事，直接點任務卡片上的聚合徽章就看得到，不用特地跑去搜尋。搜尋還是有它的用途（例如要找的客戶當下畫面上完全沒出現、或要找的是很久以前的任務），只是日常使用的頻率已經比早期低很多。
+    </div>
+    <div class="tip">
+      <div class="tip-h">長壓聯絡資訊直接跳編輯，資料隨時更新不用另外找</div>
+      聯絡資料常常是在溝通過程中才發現需要補或改的——電話講到一半客戶說換了新電話、寄信才發現地址打錯、聯絡窗口換人了要加一筆新的聯絡人。不用先關掉手邊在看的畫面、跑去客戶管理裡重新搜尋這個客戶，直接在任務卡片點開聯絡資訊、長壓標題，就跳進編輯畫面，馬上補資料。
+      <br><br>
+      <b>最常見的具體情境是定位座標修正</b>：客戶地址的定位有時候跟實際位置差很遠（例如巷弄複雜、地圖定位飄掉）。做法是：先憑經驗或問路找到客戶實際所在的位置，人到了之後，直接長壓聯絡資訊跳進編輯畫面，把目前位置存成這個客戶的定位座標——趁記憶最新鮮、人還在現場直接修正，比回辦公室再想起來要準得多。修正過一次之後，之後不管誰要去這個客戶，都會用你記錄的準確座標，不會再被帶錯路。
+    </div>
+    <div class="tip">
+      <div class="tip-h">「到場」按鈕記錄的時間會一直留著，做保養服務紀錄用得上</div>
+      進到客戶辦公室的當下按一下「到場」，會記錄下當下的時間，而且這個時間會一直顯示在按鈕上，不會自動消失，一路持續到你手動清除為止。保養服務紀錄需要「到場時間」跟「完成時間」——按下去的當下就是到場時間，等保養做完要填紀錄時，時間還顯示在按鈕上，直接照抄就好。完成時間就用當下的時間，紀錄填完再手動清除，準備給下一個客戶用。長壓這顆按鈕還能叫出最近的到場記錄。
+      <div class="note-tip"><b>推論建議：</b>兩個實際限制要知道：這個記錄只存在這台裝置本機，不會同步到雲端、也不會出現在其他裝置上；長壓查到的歷史只留最近 5 筆，超過會自動蓋掉最舊的。這個功能適合當「當下、單一裝置」的暫時記憶輔助，不適合當正式的到場記錄留存——重要的服務紀錄還是要正式填進任務備註或公司系統。</div>
+    </div>
+    <div class="tip">
+      <div class="tip-h">用備註欄位記錄溝通歷程</div>
+      一件事如果要來回好幾次（報價傳真過去、對方回報價、電話確認細節……），每次溝通完，順手把日期跟內容記一筆進備註——不是系統自動整理，是你自己養成的記錄習慣，累積下來不管自己回頭查、還是換人接手，都能一眼看出談到哪裡、卡在哪個環節。
+    </div>
+    <div class="tip">
+      <div class="tip-h">單據、設備照片直接附在任務上</div>
+      長按任務進編輯畫面，可以直接拍照或從相簿選圖片附加上去——報價單、對方回傳的文件截圖、現場設備照片，都跟著這筆任務放在一起，不用回頭在手機相簿或雲端硬碟裡找是哪一張。
+    </div>
+    <div class="tip">
+      <div class="tip-h">優先值自動去重，不用自己記哪個號碼用過</div>
+      同分類底下要排優先順序時，直接設想要的數字就好，就算跟別人撞號，系統會自動把原本占用的任務往後推、連鎖處理——不用先去翻清單確認「這個數字有沒有人在用」。
+    </div>
+    <div class="tip">
+      <div class="tip-h">加油里程數先快速新增記一筆，週四打費用單時不用再回想</div>
+      公司車加油時，發票上要記錄當下的里程數——加油當下直接快速新增一筆（例如「加油 里程 12345」），花不到十秒。重點是幫你把這個數字留到週四打費用單那天還找得到。跟「每週四費用單週期任務」正好搭配：週期任務提醒你今天該打費用單了，加油記錄提供打單當下需要的實際數字，兩個技巧合起來用，週四當天不用再東翻西找。
+    </div>
+    <div class="tip">
+      <div class="tip-h">私人分類當隨手記的購買清單</div>
+      要去大賣場買東西前，平常想到「快沒了、要買」的東西，隨手用私人分類快速新增一筆。等真的要去大賣場那天，切到私人分類，清單上列的就是要買的東西，直接照著買、買完打勾。這個技巧的價值是<b>分散記錄、集中使用</b>：想到的當下跟真正要用清單的時候通常不是同一時間，中間這段落差常常就是忘記買東西的原因，先記下來就不會漏。
+    </div>
+    <div class="tip">
+      <div class="tip-h">電腦版操作完，關閉前記得手動同步一次</div>
+      正常的自動同步會在最後一個動作完成後<b>延遲十幾秒才觸發</b>，如果動作做完立刻關掉分頁，很可能正好卡在這個等待的空檔裡，最後幾筆異動還沒真的送上雲端。手動按一次「立即同步」，確認真的同步完成再關，比較保險。
+    </div>
+    <div class="tip">
+      <div class="tip-h">長壓側邊欄「全部」，看的是累積到那天為止的全部工作量</div>
+      今天的事告一段落時，長壓側邊欄的「全部」分類，可以選一個日期（選單裡有「明天」的快捷選項）——但這裡篩出來的不是「只看那一天要做什麼」，是累積到選定日期為止、所有還沒完成的任務。這代表你看到的是「如果照原訂計畫，到那天為止我總共欠了多少事」，比單純看某一天的任務清單更適合拿來做工作量評估、事先規劃。
+    </div>
+    <div class="tip">
+      <div class="tip-h">手機或程式異常、Google 帳號登入不了時，先做一次免登入救援匯出</div>
+      如果遇到登入異常（帳號登不進去、程式卡住），登入畫面本身就有一個不用登入也能用的「📦 本地備份匯出」按鈕——直接把這台裝置目前快取的任務、客戶、聯絡資料、分類、週期範本、外部連結匯出成一個 JSON 檔案下載下來，連還沒同步上雲端的異動也會一併帶走。這個匯出只會讀取這些業務資料，不會碰到 Gemini Key、Google 授權這類帳號憑證，是安全的。
+      <div class="note-tip"><b>推論建議：</b>要留意的限制：免登入狀態下沒辦法連線查詢雲端，匯出的每一項資料都是這台裝置上次同步時留下的本機快取，不是即時連線抓的最新狀態——這個限制適用於全部六項。如果這台裝置有一陣子沒同步過，救出來的內容就是「上次同步當下」的樣子。等登入恢復正常後，這個檔案可以拿來對照確認、或必要時用「還原備份」救回。</div>
+    </div>
+  </div>
+</details>
+
+<details class="sec" id="s6">
+  <summary>
+    <div class="num">6</div>
+    <div class="stitle">待補充的技巧<span class="subline">持續累積中</span></div>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+  </summary>
+  <div class="sec-body">
+    <div class="tip"><span class="pill gray" style="margin-right:6px;">待補充</span>其他實際使用後發現的技巧，之後陸續補上。</div>
+  </div>
+</details>
+
+<footer>
+  宜修待辦 使用技巧　·　依 App 目前版本（v600.170）整理<br>
+  有想到新技巧，跟開發者說一聲就會加進來。
+</footer>
+
+</div>
+</body>
+</html>
