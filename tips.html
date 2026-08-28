@@ -182,6 +182,11 @@
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
   </summary>
   <div class="sec-body">
+    <div class="note-warn">
+      <span class="pill orange" style="margin-right:6px;">使用前提</span>AI 排路線這個功能要先在設定頁輸入 Gemini API Key 才能用——這把 Key 是<b>每位使用者自己設定自己的</b>，不是公司統一發一把大家共用，同事各自要去申請、各自輸入到自己的帳號設定裡。沒設定的話，點「AI 重新排路線」會直接跳錯誤訊息，提醒去設定頁輸入。
+      <br><br>
+      <b>怎麼申請</b>：到 <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener" style="color:var(--blue);font-weight:700;">Google AI Studio</a>，用自己的 Google 帳號登入，點「Create API key」建立一把新的金鑰，複製後貼到宜修待辦設定頁的「Gemini API Key」欄位就完成了。免費申請，不需要輸入信用卡資料，一般日常使用量不會碰到額度上限。
+    </div>
     <div class="note-warn"><span class="pill orange" style="margin-right:6px;">藏得比較深</span>大部分同事其實不知道有這個功能——入口不是畫面上一顆看得到的按鈕，而是<b>長壓「今天」（或任何篩選標題文字，例如切到「保養」分類時顯示的標題）半秒</b>，才會跳出隱藏選單，裡面才看得到「路線排序」「AI 重新排路線」這些選項。
       <div class="shot-wrap">
         <img src="./img/tip-route-menu.png" alt="長壓分類標題叫出路線選單">
@@ -216,7 +221,7 @@
   <div class="sec-body">
     <div class="tip">
       <div class="tip-h">快速新增用 AI 解析，語音輸入更省事</div>
-      一句話裡同時講好幾件事，AI 會自動拆成多筆任務、各自判斷分類跟日期，你不用先想好「這個要選哪個分類」再輸入。用手機的語音輸入直接講一大段、講完點 AI 解析，比自己打字快，而且客戶名稱如果因為口音或聽寫誤差被辨識成同音錯字（例如正確客戶是「協鉦」，語音辨識卻聽成「寫真」），AI 會對照你既有的客戶清單自動修正回正確的客戶名稱。
+      一句話裡同時講好幾件事，AI 會自動拆成多筆任務、各自判斷分類跟日期，你不用先想好「這個要選哪個分類」再輸入。用手機的語音輸入直接講一大段、講完點 AI 解析，比自己打字快，而且客戶名稱如果因為口音或聽寫誤差被辨識成同音錯字（例如正確客戶是「協鉦」，語音辨識卻聽成「寫真」），AI 會對照你既有的客戶清單自動修正回正確的客戶名稱。這個功能跟保養路線的 AI 排序一樣，也需要先在設定頁輸入 Gemini API Key（每位使用者自己的，申請方式見第 4 段），沒設定的話按 AI 解析會直接跳錯誤訊息。
     </div>
     <div class="tip">
       <div class="tip-h">輸入框不限於自己打字或講話</div>
