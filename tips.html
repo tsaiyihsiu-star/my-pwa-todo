@@ -102,6 +102,14 @@
   }
 
   footer{text-align:center; color:var(--gray); font-size:13px; margin-top:30px;}
+
+  /* 說明截圖 */
+  .shot-wrap{margin:12px 0 4px; text-align:center;}
+  .shot-wrap img{
+    max-width:280px; width:100%; border-radius:12px;
+    box-shadow:0 2px 10px rgba(0,0,0,.15); border:1px solid var(--line);
+  }
+  .shot-cap{font-size:12.5px; color:var(--gray); margin-top:6px;}
   b{color:var(--ink);}
 </style>
 </head>
@@ -174,9 +182,20 @@
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
   </summary>
   <div class="sec-body">
-    <div class="note-warn"><span class="pill orange" style="margin-right:6px;">藏得比較深</span>大部分同事其實不知道有這個功能——入口不是畫面上一顆看得到的按鈕，而是<b>長壓「今天」（或任何篩選標題文字，例如切到「保養」分類時顯示的標題）半秒</b>，才會跳出隱藏選單，裡面才看得到「路線排序」「AI 重新排路線」這些選項。</div>
+    <div class="note-warn"><span class="pill orange" style="margin-right:6px;">藏得比較深</span>大部分同事其實不知道有這個功能——入口不是畫面上一顆看得到的按鈕，而是<b>長壓「今天」（或任何篩選標題文字，例如切到「保養」分類時顯示的標題）半秒</b>，才會跳出隱藏選單，裡面才看得到「路線排序」「AI 重新排路線」這些選項。
+      <div class="shot-wrap">
+        <img src="./img/tip-route-menu.png" alt="長壓分類標題叫出路線選單">
+        <div class="shot-cap">長壓「保養」標題半秒，跳出隱藏選單</div>
+      </div>
+    </div>
     <div class="tip"><b>AI 排序解決的問題</b>：手動排幾十個客戶的拜訪順序很花時間，AI 依地理位置（縣市由北到南、同區聚在一起）先排出一個大致合理的順序，省下從零開始排的時間。</div>
-    <div class="tip"><b>但 AI 沒有真實路況資料</b>，只能依地址文字判斷大概區域，區內細節順序常常不夠貼合實際路況——這時候拖曳微調的價值就出來了：你知道哪條路比較順、哪個客戶今天特別急，這些「在地知識」是 AI 排不出來的，微調一次之後<b>這個順序會被記住</b>，不用每次重排。</div>
+    <div class="tip">
+      <b>但 AI 沒有真實路況資料</b>，只能依地址文字判斷大概區域，區內細節順序常常不夠貼合實際路況——這時候拖曳微調的價值就出來了：你知道哪條路比較順、哪個客戶今天特別急，這些「在地知識」是 AI 排不出來的，微調一次之後<b>這個順序會被記住</b>，不用每次重排。
+      <div class="shot-wrap">
+        <img src="./img/tip-route-drag.png" alt="路線排序模式下拖曳調整站點順序">
+        <div class="shot-cap">每個站點右邊的「☰」握把，按住拖曳就能調整順序</div>
+      </div>
+    </div>
     <div class="tip">排序是依你當下篩選的分類分別記住的——這代表「保養」跟「合約」可以各自維護一套順序，互不干擾，你不用每次切分類都重排一次。</div>
     <div class="tip"><b>排除功能</b>的技巧：不是所有任務都需要親自跑一趟（例如純電話聯絡的），排路線前先把這種任務排除掉，AI 排序跟地圖導航才不會被不相干的站點稀釋掉真正要跑的路線。</div>
     <div class="tip">
@@ -271,7 +290,7 @@
 </details>
 
 <footer>
-  宜修待辦 使用技巧　·　依 App 目前版本（v600.170）整理<br>
+  宜修待辦 使用技巧　·　依 App 目前版本（v600.173）整理<br>
   有想到新技巧，跟開發者說一聲就會加進來。
 </footer>
 
