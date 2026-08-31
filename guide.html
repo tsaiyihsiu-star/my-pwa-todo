@@ -80,6 +80,12 @@
     background:#F0F1F3; border:1px dashed #C7C7CC; border-radius:8px;
     padding:14px; text-align:center; color:var(--gray); font-size:13px; margin:10px 0;
   }
+  .shot-wrap{margin:12px 0 4px; text-align:center;}
+  .shot-wrap img{
+    max-width:280px; width:100%; border-radius:12px;
+    box-shadow:0 2px 10px rgba(0,0,0,.15); border:1px solid var(--line);
+  }
+  .shot-cap{font-size:12.5px; color:var(--gray); margin-top:6px;}
   footer{text-align:center; color:var(--gray); font-size:13px; margin-top:30px;}
   b{color:var(--ink);}
 </style>
@@ -131,7 +137,10 @@
     <div class="step"><div class="n">👤</div><div class="t"><b>客戶</b>（人形圖示）：客戶管理（見第 5 節）。</div></div>
     <div class="step"><div class="n">⚙</div><div class="t"><b>設定</b>（齒輪圖示）：ERP／Excel 匯入、API Key、登出等（見第 6、7 節）。</div></div>
     <div class="tip"><b>小提醒：</b>點日期可看當天任務；完成的任務會收進「已完成」分類，不會不見。</div>
-    <div class="placeholder">［此處可放：主畫面與側欄按鈕 截圖］</div>
+    <div class="shot-wrap">
+      <img src="./img/guide-main-screen.png" alt="主畫面側邊欄各按鈕標示">
+      <div class="shot-cap">左上「＋」新增任務、側欄下方「分類」「客戶」「設定」</div>
+    </div>
   </section>
 
   <!-- 3 -->
@@ -154,7 +163,14 @@
     <div class="step"><div class="n">2</div><div class="t">要還原：切到「已完成」分類，找到該任務，<b>再點一次圈圈</b>即可還原成待辦。</div></div>
 
     <div class="tip"><b>完成 vs 刪除：</b>「完成」是把任務收起來、之後找得回；「刪除」才是真的移除。日常結案用「完成」即可。</div>
-    <div class="placeholder">［此處可放：快速新增 / 完整新增 / 任務選單 截圖］</div>
+    <div class="shot-wrap">
+      <img src="./img/tip-quickadd-ai-1.png" alt="快速新增輸入框語音輸入後按AI解析">
+      <div class="shot-cap">① 快速新增：輸入內容，按右邊的 AI 解析</div>
+    </div>
+    <div class="shot-wrap">
+      <img src="./img/tip-quickadd-ai-2.png" alt="AI解析結果自動判斷分類與客戶">
+      <div class="shot-cap">② 解析結果：自動判斷分類、日期、客戶</div>
+    </div>
   </section>
 
   <!-- 4 -->
@@ -164,9 +180,12 @@
     <div class="step"><div class="n">1</div><div class="t">點側欄的<b>「分類」</b>按鈕，打開分類管理。</div></div>
     <div class="step"><div class="n">2</div><div class="t">在下方輸入框輸入分類名稱（如「保養」），按<b>「新增」</b>（或按 <kbd>Enter</kbd>）。</div></div>
     <div class="step"><div class="n">3</div><div class="t">現有分類可在列表中管理（改名、排序、設定顏色等）。</div></div>
-    <div class="step"><div class="n">4</div><div class="t">調整完按<b>「完成」</b>才會生效。</div></div>
+    <div class="step"><div class="n">4</div><div class="t">調整完按<b>「儲存」</b>才會生效。</div></div>
     <div class="tip"><b>小提醒：</b>新增或編輯任務時，就能從清單選擇這裡建立的分類。</div>
-    <div class="placeholder">［此處可放：分類管理畫面 截圖］</div>
+    <div class="shot-wrap">
+      <img src="./img/guide-category-manage.png" alt="分類管理畫面可改名排序刪除">
+      <div class="shot-cap">分類管理畫面：可改名、拖曳排序、設定顏色</div>
+    </div>
   </section>
 
   <!-- 5 -->
@@ -178,7 +197,10 @@
     <div class="step"><div class="n">3</div><div class="t">點<b>右上角搜尋圖示</b>可快速找客戶。</div></div>
     <div class="step"><div class="n">4</div><div class="t">點進客戶可管理其聯絡資料（地址、電話等）。</div></div>
     <div class="tip"><b>小提醒：</b>大量客戶不用手動一筆筆建，可用第 6 節「ERP 匯入」或第 7 節「Excel 匯入」批次帶入。</div>
-    <div class="placeholder">［此處可放：客戶管理 / 新增客戶 截圖］</div>
+    <div class="shot-wrap">
+      <img src="./img/tip-customer-master-sub.png" alt="客戶管理畫面設定主從關係">
+      <div class="shot-cap">客戶管理畫面：設成子客戶後可「改名」「升為主」「脫離」</div>
+    </div>
   </section>
 
   <!-- 6 -->
@@ -188,11 +210,12 @@
 
     <div class="warn"><b>使用前提：</b>ERP 匯入只能在<b>電腦</b>上、且<b>連著公司內網（公司 WiFi）</b>時使用。手機因連線限制無法使用，會自動隱藏此功能。</div>
 
-    <h3>第一步：設定 ERP API Key（只需設定一次）</h3>
-    <div class="step"><div class="n">1</div><div class="t">點側欄<b>齒輪（設定）</b>，打開設定。</div></div>
-    <div class="step"><div class="n">2</div><div class="t">找到<b>「ERP API Key」</b>，點 <span class="pill amber">🔑 設定（ERP 匯入・公司提供）</span>。</div></div>
-    <div class="step"><div class="n">3</div><div class="t">貼上<b>公司提供的 API Key</b>，按確定儲存。</div></div>
-    <div class="tip"><b>小提醒：</b>設定好 Key 之後，設定頁的「從 ERP 匯入」按鈕才會出現／可用。API Key 向公司或管理者索取。</div>
+    <h3>第一步：申請並設定 ERP API Key（只需設定一次）</h3>
+    <div class="step"><div class="n">1</div><div class="t">在公司內部網路，用瀏覽器開啟 <b>http://192.168.3.139:8000/API/</b>，依畫面指示申請一把屬於自己的 API Key。</div></div>
+    <div class="step"><div class="n">2</div><div class="t">點側欄<b>齒輪（設定）</b>，打開設定。</div></div>
+    <div class="step"><div class="n">3</div><div class="t">找到<b>「ERP API Key」</b>，點 <span class="pill amber">🔑 設定（ERP 匯入・公司提供）</span>。</div></div>
+    <div class="step"><div class="n">4</div><div class="t">貼上剛才申請到的 <b>API Key</b>，按確定儲存。</div></div>
+    <div class="tip"><b>小提醒：</b>設定好 Key 之後，設定頁的「從 ERP 匯入」按鈕才會出現／可用。這把 Key 是<b>每位使用者自己申請、自己的</b>，不是公司統一發一把大家共用，同事各自要去申請。</div>
 
     <h3>第二步：執行匯入</h3>
     <p>設定頁的「從 ERP 資料庫匯入」區有三顆按鈕：</p>
@@ -205,8 +228,11 @@
     <div class="step"><div class="n">3</div><div class="t">按<b>「查詢」</b>，系統會抓取資料並顯示<b>預覽</b>（每筆是新增／更新／跳過等）。</div></div>
     <div class="step"><div class="n">4</div><div class="t">確認預覽沒問題後，按<b>「匯入」</b>。完成後會顯示結果統計。</div></div>
 
-    <div class="tip"><b>放心匯入：</b>系統會自動比對，已經手動修改過的資料不會被蓋掉；同名但不同編號的客戶會自動跳過並提示，不會覆蓋既有客戶。</div>
-    <div class="placeholder">［此處可放：ERP API Key 設定 / 匯入預覽畫面 截圖］</div>
+    <div class="tip"><b>放心匯入：</b>保養、合約任務只會新增沒出現過的，不會動到既有任務的任何欄位（包含你事後手動改過的內容）。客戶聯絡資料會記得哪些是你手動填的、哪些是上次匯入建的——手動填的資料絕對不會被覆蓋，只有「上次也是匯入建立」的資料，才會在 ERP 資料有變動時跟著更新。同名但編號不同的客戶，會自動跳過並提示，不會誤蓋既有客戶。</div>
+    <div class="shot-wrap">
+      <img src="./img/tip-erp-key.png" alt="設定頁ERP API Key輸入畫面">
+      <div class="shot-cap">設定頁點「設定」，貼上申請到的 Key</div>
+    </div>
   </section>
 
   <!-- 7 -->
@@ -218,7 +244,10 @@
     <div class="step"><div class="n">3</div><div class="t">匯入前，先點該項目下方的 <span class="pill blue">📋 匯入前要準備哪些欄位？</span>，照說明準備好 Excel 欄位。</div></div>
     <div class="step"><div class="n">4</div><div class="t">選擇你的 Excel／CSV 檔，系統會讀取並匯入。</div></div>
     <div class="tip"><b>小提醒：</b>電話會自動整理成純數字格式；系統會避免匯入重複資料。準備檔案時照「要準備哪些欄位」的說明做，成功率最高。</div>
-    <div class="placeholder">［此處可放：Excel 匯入 / 欄位說明 截圖］</div>
+    <div class="shot-wrap">
+      <img src="./img/guide-excel-import.png" alt="Excel匯入設定畫面與欄位準備說明">
+      <div class="shot-cap">設定頁「匯入客戶」，點「匯入前要準備哪些欄位？」看說明</div>
+    </div>
   </section>
 
   <footer>
