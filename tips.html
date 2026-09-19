@@ -94,7 +94,7 @@
     display:inline-block; padding:1px 9px; border-radius:20px; font-size:12.5px;
     font-weight:600; color:#fff; vertical-align:middle;
   }
-  .pill.orange{background:var(--orange);} .pill.gray{background:var(--gray);}
+  .pill.orange{background:var(--orange);} .pill.gray{background:var(--gray);} .pill.green{background:var(--green);} .pill.red{background:var(--red);}
 
   code{
     background:rgba(0,0,0,.06); padding:1px 6px; border-radius:4px;
@@ -131,7 +131,8 @@
   <a href="#s3">週期任務</a>
   <a href="#s4">保養路線</a>
   <a href="#s5">日常技巧</a>
-  <a href="#s6">待補充</a>
+  <a href="#s6">已知問題</a>
+  <a href="#s7">待補充</a>
 </nav>
 
 <details class="sec" id="s1" open>
@@ -358,6 +359,27 @@
 <details class="sec" id="s6">
   <summary>
     <div class="num">6</div>
+    <div class="stitle">已知的問題<span class="subline">遇到類似狀況，這裡先查</span></div>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+  </summary>
+  <div class="sec-body">
+    <div class="tip">
+      <div class="tip-h"><span class="pill green" style="margin-right:6px;">已解決</span>PWA 切到背景一段時間、再切回前景，偶爾會卡頓或黑畫面一下</div>
+      情境：手機切到背景（切去別的 App、或鎖螢幕）放置一段時間，再切回宜修待辦，畫面會停頓、甚至黑畫面約 1~3 秒才恢復正常，尤其在「編輯客戶地址、頻繁切去 Google 地圖複製座標再切回來」這種需要來回切換的操作下特別明顯。
+      <div class="note-tip"><b>解法：</b>設定 → 隱私權與安全性 → 定位服務 → 系統服務 → 「建議與搜尋」，把這一項的定位權限關閉。實測關閉後，原本約 3 秒的卡頓縮短成「閃一下」就恢復，改善非常明顯。</div>
+      這個系統服務會在 App 切到前景的時候，把手機位置傳送給 Apple 用來提供 Siri 建議、Spotlight 搜尋建議——時機剛好跟宜修待辦「畫面要恢復繪製」的時間點重疊、搶用系統資源，才會造成卡頓，跟宜修待辦本身的程式沒有關係。關閉後的影響很小：只是 Siri、Spotlight 少一些跟位置相關的主動建議，不影響導航、地圖或其他 App 各自的定位功能，也不影響任何核心功能。
+      <div class="note-warn"><b>如果之後又遇到類似卡頓：</b>先確認這項設定有沒有被重新開啟（iOS 版本更新後，設定有時候會被重置回預設值）。</div>
+    </div>
+    <div class="tip">
+      <div class="tip-h">CarPlay 用一段時間、螢幕鎖著開車後，回到 App 短暫卡頓</div>
+      情境：開車連接 CarPlay 一段時間，到達後 CarPlay 斷線、螢幕解鎖，這時候點任何操作會卡頓幾秒才恢復。研判很可能跟上面這則是類似的成因（系統服務在背景喚醒的時間點剛好搶用資源），如果上面「建議與搜尋」關閉後，這個情況也一併消失，就更加確認是同一個機制。
+    </div>
+  </div>
+</details>
+
+<details class="sec" id="s7">
+  <summary>
+    <div class="num">7</div>
     <div class="stitle">待補充的技巧<span class="subline">持續累積中</span></div>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
   </summary>
@@ -367,10 +389,11 @@
 </details>
 
 <footer>
-  宜修待辦 使用技巧　·　依 App 目前版本（v600.173）整理<br>
+  宜修待辦 使用技巧　·　依 App 目前版本（v600.225）整理<br>
   有想到新技巧，跟開發者說一聲就會加進來。
 </footer>
 
 </div>
 </body>
+</html>
 </html>
