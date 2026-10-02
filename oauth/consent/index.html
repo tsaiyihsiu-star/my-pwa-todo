@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="referrer" content="no-referrer">
+  <title>宜修待辦｜AI Agent 正式授權</title>
+  <style>
+    :root { color-scheme: light; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #17243a; background: #f3f6fa; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 24px 16px; }
+    main { width: min(100%, 480px); padding: 28px; background: white; border: 1px solid #dae2ec; border-radius: 18px; box-shadow: 0 12px 36px #17243a12; }
+    h1 { font-size: 1.45rem; margin: 0 0 12px; }
+    p { line-height: 1.6; }
+    .badge { display: inline-block; background: #fff0ed; color: #b12d23; font-size: .8rem; font-weight: 700; padding: 5px 9px; border-radius: 8px; margin-bottom: 18px; }
+    .muted { color: #59677b; font-size: .92rem; }
+    dl { margin: 20px 0; padding: 16px; border-radius: 12px; background: #f4f7fb; }
+    dt { font-weight: 700; margin-top: 12px; }
+    dt:first-child { margin-top: 0; }
+    dd { margin: 5px 0 0; overflow-wrap: anywhere; }
+    ul { margin: 8px 0 0; padding-left: 22px; }
+    .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+    button { min-height: 44px; border-radius: 10px; padding: 10px 17px; font: inherit; font-weight: 650; cursor: pointer; }
+    button:disabled { opacity: .55; cursor: wait; }
+    .primary { color: white; background: #1462b8; border: 1px solid #1462b8; }
+    .secondary { color: #243850; background: white; border: 1px solid #aebed0; }
+    #status { min-height: 1.5em; }
+    #status.error { color: #b12d23; }
+    [hidden] { display: none !important; }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.112.0/dist/umd/supabase.js" integrity="sha384-3lSoufGjgosjqp3JDr/NReX3PjMd3SlC8wJ23CWFjB6DSFNf71I0DhcRTUm9MwgO" crossorigin="anonymous" defer></script>
+</head>
+<body>
+  <main>
+    <span class="badge">yihsiu-todo 正式環境</span>
+    <h1>宜修待辦 AI Agent 授權</h1>
+    <p id="status" role="status" aria-live="polite">正在檢查登入與授權請求…</p>
+    <section id="login" hidden>
+      <p>請先使用宜修待辦的 Google 帳號登入，登入後會回到這個授權頁。</p>
+      <button id="sign-in" class="primary" type="button">使用 Google 登入</button>
+    </section>
+    <section id="consent" hidden>
+      <p>下列應用程式要求取得你在 <strong>yihsiu-todo</strong> 的授權。請確認應用程式與返回網址後再決定。</p>
+      <dl>
+        <dt>應用程式</dt><dd id="client-name"></dd>
+        <dt>返回網址</dt><dd id="redirect-uri"></dd>
+        <dt>要求的身分資訊範圍</dt><dd><ul id="scopes"></ul></dd>
+      </dl>
+      <p class="muted">OAuth 身分資訊範圍本身不限制資料表的讀寫權限。後續 Agent 的唯讀限制須由連接層與資料庫權限另外實施並驗證。</p>
+      <div class="actions">
+        <button id="approve" class="primary" type="button">同意授權</button>
+        <button id="deny" class="secondary" type="button">拒絕授權</button>
+      </div>
+    </section>
+  </main>
+  <script>'use strict';const _0x2add0b=_0x5cda;(function(_0x48716a,_0x544f2a){const _0x404ada=_0x5cda,_0x364562=_0x48716a();while(!![]){try{const _0x17c10f=parseInt(_0x404ada(0x17f))/0x1*(parseInt(_0x404ada(0x155))/0x2)+-parseInt(_0x404ada(0x16d))/0x3+-parseInt(_0x404ada(0x19c))/0x4*(-parseInt(_0x404ada(0x151))/0x5)+parseInt(_0x404ada(0x18a))/0x6*(-parseInt(_0x404ada(0x140))/0x7)+parseInt(_0x404ada(0x193))/0x8+-parseInt(_0x404ada(0x184))/0x9*(parseInt(_0x404ada(0x13a))/0xa)+parseInt(_0x404ada(0x17d))/0xb*(-parseInt(_0x404ada(0x145))/0xc);if(_0x17c10f===_0x544f2a)break;else _0x364562['push'](_0x364562['shift']());}catch(_0x19d2a0){_0x364562['push'](_0x364562['shift']());}}}(_0x2df3,0x6e428));function _0x2df3(){const _0x50b5c6=['wjkcplme','assign','-uri','get','origin','addEvent','入無法開始。','ent-pend','google','OSgcBy','consent','DOMConte','localhos','oauth','正在確認授權…','授權頁無法載入。','rSOIgYTc','redirect','denyAuth','scope','login','message','正在開啟\x20Goo','1915212oAfsqh','重新發起。','ing-id','hildren','ame','authoriz','client-n','https://','ement','Google\x20登','getEleme','getItem','uthoriza','未提供','ation_id','yihsiu-a','286fRkIJh','thOAuth','21DbgOYK','不支援\x20OAut','click','createCl','授權服務未提供返','83502KTRNbq','正在拒絕授權…','string','未指定（Supa','授權函式庫載入失','location','666474aLnNnz','user','pathname','abase.co','h\x20Server','deny','mal-cons','appendCh','protocol','6350728YeRPBU','2H0DE0sj','textCont','重新整理。','hidden','缺少\x20autho','ntById','client','授權請求無效或已','20BIdZBc','href','disabled','catch','currentT','ient','gle\x20登入…','先前已授權，正在','auth','getUser','supabase','getAutho','sb_publi','ent','I\x20Agent\x20','180eASisU','返回應用程式…','_uri','replaceC','過期，請重新發起','ild','7DRaoOu','_url','status','\x20email）','approve','252048bPCqFc','敗，請檢查網路後','rization','split','approveA','length','授權服務回傳了不','classLis','toggle','sign-in','base\x20預設為','未提供名稱','791745bayRuI','Listener','回網址。','Details','31298YHOSCz'];_0x2df3=function(){return _0x50b5c6;};return _0x2df3();}const _0x566c02=_0x2add0b(0x174)+_0x2add0b(0x156)+'fjszudfv'+'mwxr.sup'+_0x2add0b(0x18d),_0xe40c93=_0x2add0b(0x137)+'shable_1'+_0x2add0b(0x166)+_0x2add0b(0x194)+'3QE6g_Pz'+_0x2add0b(0x15f),_0x1f92e1=_0x2add0b(0x17c)+'gent-for'+_0x2add0b(0x190)+_0x2add0b(0x15d)+_0x2add0b(0x16f),_0x2b1963=document[_0x2add0b(0x177)+_0x2add0b(0x199)](_0x2add0b(0x142)),_0x548dd8=document[_0x2add0b(0x177)+_0x2add0b(0x199)](_0x2add0b(0x16a)),_0x1ba5ba=document[_0x2add0b(0x177)+_0x2add0b(0x199)](_0x2add0b(0x160)),_0x59f3d7=document[_0x2add0b(0x177)+'ntById'](_0x2add0b(0x144)),_0x3a0f54=document[_0x2add0b(0x177)+_0x2add0b(0x199)](_0x2add0b(0x18f));let _0x2d1ac4,_0x3b2d25,_0x3abb3b=![];function _0x4e79dd(_0x4f5a4c,_0x14c938=![]){const _0x595ade=_0x2add0b;_0x2b1963['textCont'+'ent']=_0x4f5a4c,_0x2b1963[_0x595ade(0x14c)+'t'][_0x595ade(0x14d)]('error',_0x14c938);}function _0x13d701(_0x387e22){const _0x1c0b81=_0x2add0b,_0x6c81d6=new URL(_0x387e22);if(_0x6c81d6['protocol']!=='https:'&&!(_0x6c81d6[_0x1c0b81(0x192)]==='http:'&&_0x6c81d6['hostname']===_0x1c0b81(0x162)+'t'))throw new Error(_0x1c0b81(0x14b)+'支援的返回網址。');sessionStorage['removeIt'+'em'](_0x1f92e1),window[_0x1c0b81(0x189)][_0x1c0b81(0x157)](_0x6c81d6[_0x1c0b81(0x19d)]);}function _0x1e7532(_0x22bb88){const _0x4181c2=_0x2add0b;document[_0x4181c2(0x177)+'ntById'](_0x4181c2(0x173)+_0x4181c2(0x171))['textCont'+_0x4181c2(0x138)]=_0x22bb88[_0x4181c2(0x19a)]?.['name']||_0x4181c2(0x150),document[_0x4181c2(0x177)+_0x4181c2(0x199)]('redirect'+_0x4181c2(0x158))[_0x4181c2(0x195)+_0x4181c2(0x138)]=_0x22bb88[_0x4181c2(0x167)+_0x4181c2(0x13c)]||_0x4181c2(0x17a);const _0x281d14=document[_0x4181c2(0x177)+_0x4181c2(0x199)]('scopes');_0x281d14[_0x4181c2(0x13d)+_0x4181c2(0x170)]();const _0xb071a2=typeof _0x22bb88[_0x4181c2(0x169)]===_0x4181c2(0x186)?_0x22bb88[_0x4181c2(0x169)]['trim']()[_0x4181c2(0x148)](/\s+/)['filter'](Boolean):[];for(const _0x3b31ea of _0xb071a2[_0x4181c2(0x14a)]?_0xb071a2:[_0x4181c2(0x187)+_0x4181c2(0x14f)+_0x4181c2(0x143)]){const _0x25c097=document['createEl'+_0x4181c2(0x175)]('li');_0x25c097[_0x4181c2(0x195)+_0x4181c2(0x138)]=_0x3b31ea,_0x281d14[_0x4181c2(0x191)+_0x4181c2(0x13f)](_0x25c097);}_0x4e79dd('請確認這項授權請'+'求。'),_0x1ba5ba[_0x4181c2(0x197)]=![];}async function _0x10fdb2(){const _0x4107d6=_0x2add0b;if(!window[_0x4107d6(0x135)]?.[_0x4107d6(0x182)+_0x4107d6(0x1a1)])throw new Error(_0x4107d6(0x188)+_0x4107d6(0x146)+_0x4107d6(0x196));_0x2d1ac4=window[_0x4107d6(0x135)][_0x4107d6(0x182)+_0x4107d6(0x1a1)](_0x566c02,_0xe40c93);if(!_0x2d1ac4['auth'][_0x4107d6(0x163)]?.[_0x4107d6(0x136)+_0x4107d6(0x147)+_0x4107d6(0x154)])throw new Error('目前的授權函式庫'+_0x4107d6(0x180)+_0x4107d6(0x18e)+'。');const _0x3679cf=new URLSearchParams(window[_0x4107d6(0x189)]['search']),_0x435935=_0x3679cf[_0x4107d6(0x159)](_0x4107d6(0x172)+'ation_id');if(_0x435935)sessionStorage['setItem'](_0x1f92e1,_0x435935);_0x3b2d25=_0x435935||sessionStorage[_0x4107d6(0x178)](_0x1f92e1);if(!_0x3b2d25)throw new Error(_0x4107d6(0x198)+_0x4107d6(0x147)+'_id。請從\x20A'+_0x4107d6(0x139)+'的授權流程重新進'+'入。');const {data:_0x5c982b,error:_0x26b852}=await _0x2d1ac4['auth'][_0x4107d6(0x134)]();if(_0x26b852||!_0x5c982b?.[_0x4107d6(0x18b)]){_0x4e79dd('尚未登入\x20yih'+'siu-todo'+'。'),_0x548dd8[_0x4107d6(0x197)]=![];return;}const {data:_0x54e5df,error:_0x3e7b5b}=await _0x2d1ac4[_0x4107d6(0x133)]['oauth'][_0x4107d6(0x136)+_0x4107d6(0x147)+_0x4107d6(0x154)](_0x3b2d25);if(_0x3e7b5b||!_0x54e5df)throw new Error(_0x3e7b5b?.[_0x4107d6(0x16b)]||_0x4107d6(0x19b)+_0x4107d6(0x13e)+'。');if(!(_0x4107d6(0x172)+_0x4107d6(0x17b)in _0x54e5df)){_0x4e79dd(_0x4107d6(0x1a3)+_0x4107d6(0x13b)),_0x13d701(_0x54e5df['redirect'+_0x4107d6(0x141)]);return;}_0x1e7532(_0x54e5df);}async function _0x19c483(_0x5ed51a){const _0x5d0a40=_0x2add0b;if(_0x3abb3b||!_0x3b2d25)return;_0x3abb3b=!![],_0x59f3d7['disabled']=_0x3a0f54['disabled']=!![],_0x4e79dd(_0x5ed51a?_0x5d0a40(0x164):_0x5d0a40(0x185));try{const _0xd0f3e0=_0x5ed51a?_0x5d0a40(0x149)+_0x5d0a40(0x179)+'tion':_0x5d0a40(0x168)+'orizatio'+'n',{data:_0x5c8f3c,error:_0x436cd7}=await _0x2d1ac4[_0x5d0a40(0x133)][_0x5d0a40(0x163)][_0xd0f3e0](_0x3b2d25);if(_0x436cd7||!_0x5c8f3c?.[_0x5d0a40(0x167)+_0x5d0a40(0x141)])throw new Error(_0x436cd7?.['message']||_0x5d0a40(0x183)+_0x5d0a40(0x153));_0x13d701(_0x5c8f3c[_0x5d0a40(0x167)+_0x5d0a40(0x141)]);}catch(_0x56b7fc){_0x4e79dd(_0x56b7fc[_0x5d0a40(0x16b)]||'授權處理失敗，請'+_0x5d0a40(0x16e),!![]),_0x59f3d7[_0x5d0a40(0x19e)]=_0x3a0f54['disabled']=![],_0x3abb3b=![];}}function _0x5cda(_0x4029c1,_0x1f942b){_0x4029c1=_0x4029c1-0x133;const _0x2df3e9=_0x2df3();let _0x5cdabc=_0x2df3e9[_0x4029c1];return _0x5cdabc;}document[_0x2add0b(0x177)+'ntById'](_0x2add0b(0x14e))[_0x2add0b(0x15b)+_0x2add0b(0x152)]('click',async _0x5343c7=>{const _0x4c9655=_0x2add0b;_0x5343c7['currentT'+'arget'][_0x4c9655(0x19e)]=!![],_0x4e79dd(_0x4c9655(0x16c)+_0x4c9655(0x1a2));try{const {error:_0x31c6a2}=await _0x2d1ac4['auth']['signInWi'+_0x4c9655(0x17e)]({'provider':_0x4c9655(0x15e),'options':{'redirectTo':window[_0x4c9655(0x189)][_0x4c9655(0x15a)]+window[_0x4c9655(0x189)][_0x4c9655(0x18c)]}});if(_0x31c6a2)throw _0x31c6a2;}catch(_0x34b65c){_0x4e79dd(_0x34b65c[_0x4c9655(0x16b)]||_0x4c9655(0x176)+_0x4c9655(0x15c),!![]),_0x5343c7[_0x4c9655(0x1a0)+'arget']['disabled']=![];}}),_0x59f3d7[_0x2add0b(0x15b)+'Listener'](_0x2add0b(0x181),()=>_0x19c483(!![])),_0x3a0f54[_0x2add0b(0x15b)+_0x2add0b(0x152)](_0x2add0b(0x181),()=>_0x19c483(![])),document[_0x2add0b(0x15b)+_0x2add0b(0x152)](_0x2add0b(0x161)+'ntLoaded',()=>{const _0x9c55ce=_0x2add0b;_0x10fdb2()[_0x9c55ce(0x19f)](_0x282eec=>_0x4e79dd(_0x282eec[_0x9c55ce(0x16b)]||_0x9c55ce(0x165),!![]));});</script>
+</body>
+</html>
