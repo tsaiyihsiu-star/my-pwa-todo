@@ -11,13 +11,14 @@
 //          網址完全一致，否則會快取到舊網址、離線時反而讀不到(取不到，不是壞掉，只是
 //          白白浪費這格快取)。之後升級 supabase-js 版本時，這裡跟 index.html 要一起改。
 // ============================================================
-const CACHE_NAME = 'SUPAtodo-v600.265';   // 每次改版必同步 bump
+const CACHE_NAME = 'SUPAtodo-v600.266';   // 每次改版必同步 bump
 // 程式殼層:SWR(先快取秒開,背景更新);首次無快取時走網路
 const SHELL_ASSETS = [
   './',
   './index.html',
   './manifest.json',
-  './version.json'
+  './version.json',
+  './changelog.html'
 ];
 // 純靜態資源:快取優先即可(不常變)
 const STATIC_ASSETS = [
@@ -45,6 +46,9 @@ self.addEventListener('activate', e => {
   })());
 });
 // 判斷是否為「程式殼層」請求(走 SWR)
+function isChangelogRequest(req) {
+  try { return new URL(req.url).pathname.endsWith('/changelog.html'); } catch (_) { return false; }
+}
 function isShellRequest(req) {
   if (req.mode === 'navigate') return true;               // 開 App 的導覽請求
   const u = req.url;
@@ -60,6 +64,24 @@ self.addEventListener('fetch', e => {
       || u.includes('script.google.com') || u.includes('generativelanguage')) return;
   // v600.117: ERP 內網 API 完全不經過 SW(http 內網 IP,SW 攔截會在更新/啟動接管期造成第一次失敗要多按)
   if (u.includes('192.168.') || u.includes('/api/health') || u.includes('/api/query')) return;
+  // v600.266：更新紀錄線上採網路優先；失敗才回退最後成功快取。
+  // ignoreSearch 讓 changelog.html?v=版本號 可共用同一份離線後盾，但線上永遠先抓新檔。
+  if (isChangelogRequest(req)) {
+    e.respondWith((async () => {
+      const cache = await caches.open(CACHE_NAME);
+      try {
+        const fresh = await fetch(req, { cache: 'no-store' });
+        if (fresh && fresh.ok) {
+          await cache.put('./changelog.html', fresh.clone());
+          return fresh;
+        }
+      } catch (_) {}
+      return (await caches.match('./changelog.html', { ignoreSearch: true }))
+        || (await caches.match(req, { ignoreSearch: true }))
+        || new Response('目前離線，且尚未下載更新紀錄。', { status: 503, headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
+    })());
+    return;
+  }
   // 程式殼層:Stale-While-Revalidate——有快取就秒回,同時背景抓新版更新快取(下次生效)
   if (isShellRequest(req)) {
     e.respondWith((async () => {
