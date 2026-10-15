@@ -16,12 +16,16 @@
 <main>
   <div class="top"><button class="back" type="button" id="backBtn">返回設定</button></div>
   <h1>版本更新紀錄</h1>
-  <div class="meta">紀錄版本：v600.266<br>線上優先取得最新版；離線時顯示最後成功快取內容。</div>
+  <div class="meta">紀錄版本：v600.267<br>線上優先取得最新版；離線時顯示最後成功快取內容。</div>
   <div id="networkNotice" class="notice" hidden></div>
   <section id="list" aria-label="版本更新紀錄"></section>
 </main>
 <script>
 const CHANGELOG = [{
+  v: 'v600.267',
+  date: '2026-10',
+  notes: ['修正「從 ERP 匯入保養／合約到期／客戶聯絡資料」三個按鈕在網路等待後可能播放兩次點擊音效的問題；保留缺少 API Key、公司內網無法連線及音效關閉時的原有行為。', 'UI／互動標準化 H5 第一輪：移除已無入口且無外部引用的舊登入樣式、AI 路線結果舊視窗，以及 13 個廢棄函式與 1 個廢棄狀態；保留目前登入、客戶管理、同步、ERP、AI、地圖與路線功能。']
+},{
   v: 'v600.266',
   date: '2026-10',
   notes: ['UI／互動標準化 H4：將設定內完整版本更新紀錄移至獨立 changelog.html，主程式只保留入口與目前版本狀態，降低 index.html 的下載與解析負擔；更新紀錄採線上網路優先、離線回退最後成功快取，網址帶版本參數避免沿用舊內容。另將設定頁重複的區段標題與全寬連結按鈕樣式收斂為共用類別，畫面、登入、資料、同步與操作流程不變。']
