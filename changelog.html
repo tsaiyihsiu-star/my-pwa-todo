@@ -16,12 +16,16 @@
 <main>
   <div class="top"><button class="back" type="button" id="backBtn">返回設定</button></div>
   <h1>版本更新紀錄</h1>
-  <div class="meta">紀錄版本：v600.267<br>線上優先取得最新版；離線時顯示最後成功快取內容。</div>
+  <div class="meta">紀錄版本：v600.269<br>線上優先取得最新版；離線時顯示最後成功快取內容。</div>
   <div id="networkNotice" class="notice" hidden></div>
   <section id="list" aria-label="版本更新紀錄"></section>
 </main>
 <script>
 const CHANGELOG = [{
+  v: 'v600.269',
+  date: '2026-10',
+  notes: ['UI／互動標準化 H5 第二輪、H6 與 H7：移除已確認無引用的共用死碼；將彈窗音效責任改為呼叫端明確指定，ERP 保養／合約到期／客戶聯絡資料三個匯入入口每次操作只回饋一次音效；為可讀單檔加入結構導覽，並修正 H7 CSS 註解必須位於 style 內，避免 iPhone 畫面出現註解或整體右移。登入、資料、同步、Service Worker 與既有操作流程不變。']
+},{
   v: 'v600.267',
   date: '2026-10',
   notes: ['修正「從 ERP 匯入保養／合約到期／客戶聯絡資料」三個按鈕在網路等待後可能播放兩次點擊音效的問題；保留缺少 API Key、公司內網無法連線及音效關閉時的原有行為。', 'UI／互動標準化 H5 第一輪：移除已無入口且無外部引用的舊登入樣式、AI 路線結果舊視窗，以及 13 個廢棄函式與 1 個廢棄狀態；保留目前登入、客戶管理、同步、ERP、AI、地圖與路線功能。']
