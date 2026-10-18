@@ -16,12 +16,20 @@
 <main>
   <div class="top"><button class="back" type="button" id="backBtn">返回設定</button></div>
   <h1>版本更新紀錄</h1>
-  <div class="meta">紀錄版本：v600.271<br>線上優先取得最新版；離線時顯示最後成功快取內容。</div>
+  <div class="meta">紀錄版本：v600.273<br>線上優先取得最新版；離線時顯示最後成功快取內容。</div>
   <div id="networkNotice" class="notice" hidden></div>
   <section id="list" aria-label="版本更新紀錄"></section>
 </main>
 <script>
 const CHANGELOG = [{
+  v: 'v600.273',
+  date: '2026-10',
+  notes: ['完成 UI／互動標準化階段 4：四段介面改用 none、compact、expanded、calendar 語意狀態，並由單一 setLayoutMode 入口管理側邊欄寬度、行事曆、拉條、畫面 class 與持久化狀態；新增最小 Gesture Coordinator，使彈窗拖曳、路線與分類排序、長按、下拉同步、四段切換及行事曆換月在同一觸控序列中互斥。保留 v600.272 路線拖曳不誤觸同步的修正；任務資料、登入、Supabase、同步內容、排序演算法及既有畫面尺寸不變。']
+}, {
+  v: 'v600.272',
+  date: '2026-10',
+  notes: ['修正路線排序拖曳與任務清單下拉同步同時取得觸控手勢的問題：從路線拖曳把手起手時不啟動下拉同步；拖曳進行中或觸控、畫面狀態異常中斷時，會清除下拉同步追蹤與觸發資格。路線排序、順序保存、一般下拉同步三分之二門檻、10 秒冷卻、資料、登入、Supabase 與畫面樣式均不變。']
+}, {
   v: 'v600.271',
   date: '2026-10',
   notes: ['修正任務清單左右邊距：任務卡片、逾期紅線與分類色線明確貼齊清單邊界，不再留下非預期水平間隙；同客戶展開區、一般／緊湊密度、登入、資料與同步流程維持不變。']
@@ -782,3 +790,4 @@ window.addEventListener('online',updateNetworkNotice);window.addEventListener('o
 </script>
 </body>
 </html>
+
