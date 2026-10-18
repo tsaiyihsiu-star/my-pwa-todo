@@ -1,5 +1,5 @@
 // ============================================================
-// 宜修待辦 Supabase 世代 Service Worker（測試版 index.html 用）
+// 宜修待辦 Supabase 世代 Service Worker（正式版 index.html 用）
 // v600.69: Stale-While-Revalidate（先舊後新）——解「長時間背景/導航後冷啟動變慢」。
 //          開 App 立刻用快取殼層顯示(秒開),同時背景抓新版存快取,新版下次開啟生效。
 //          兼顧:秒開 + 版本仍更新(延後一次) + iOS 不卡永久舊版(背景持續抓+前端 version.json 檢查會提示)。
