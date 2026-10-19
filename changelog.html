@@ -16,12 +16,16 @@
 <main>
   <div class="top"><button class="back" type="button" id="backBtn">返回設定</button></div>
   <h1>版本更新紀錄</h1>
-  <div class="meta">紀錄版本：v600.281<br>線上優先取得最新版；離線時顯示最後成功快取內容。</div>
+  <div class="meta">紀錄版本：v600.282<br>線上優先取得最新版；離線時顯示最後成功快取內容。</div>
   <div id="networkNotice" class="notice" hidden></div>
   <section id="list" aria-label="版本更新紀錄"></section>
 </main>
 <script>
 const CHANGELOG = [{
+  v: 'v600.282',
+  date: '2026-10',
+  notes: ['ERP 保養、合約與聯絡資料查詢後先依既有匯入規則比對本地資料，只列出真正即將新增、更新或認領的內容；實際匯入前再次同步比對。另修正客戶管理新增／搜尋與選擇客戶搜尋欄無法展開，顯示中的客戶管理欄位固定在清單頂端；恢復自訂分類抬頭色框、外部連結排序邊界停用狀態與員工綁定狀態顏色。資料格式、ERP 查詢條件及既有匯入判斷規則不變。']
+}, {
   v: 'v600.281',
   date: '2026-10',
   notes: ['第二批 iPhone PWA 實機驗收熱修：修正分類管理拖曳卡片在 transform 彈窗內使用錯誤座標基準，造成卡片跳到手指下方；並修正 ERP 保養、合約及聯絡資料查詢有結果後，匯入按鈕仍被 5D 集中樣式隱藏。查詢、匯入、資料寫入、同步、路線拖曳及既有功能不變。']
