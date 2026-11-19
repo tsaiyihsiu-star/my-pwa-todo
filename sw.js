@@ -1,3 +1,4 @@
+// v600.325: 整併客戶管理入口並改版編輯聯絡資訊；檢視畫面維持 v600.324；更新殼層快取版本。
 // ============================================================
 // 宜修待辦 Supabase 世代 Service Worker（正式版 index.html 用）
 // v600.69: Stale-While-Revalidate（先舊後新）——解「長時間背景/導航後冷啟動變慢」。
@@ -11,7 +12,7 @@
 //          網址完全一致，否則會快取到舊網址、離線時反而讀不到(取不到，不是壞掉，只是
 //          白白浪費這格快取)。之後升級 supabase-js 版本時，這裡跟 index.html 要一起改。
 // ============================================================
-const CACHE_NAME = 'SUPAtodo-v600.321';   // 每次改版必同步 bump
+const CACHE_NAME = 'SUPAtodo-v600.325';   // 每次改版必同步 bump
 // 程式殼層:SWR(先快取秒開,背景更新);首次無快取時走網路
 const SHELL_ASSETS = [
   './',
@@ -112,5 +113,6 @@ self.addEventListener('fetch', e => {
     caches.match(req).then(r => r || fetch(req).catch(() => r || Response.error()))
   );
 });
+
 
 
