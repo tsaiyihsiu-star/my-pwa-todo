@@ -16,11 +16,12 @@
 <main>
   <div class="top"><button class="back" type="button" id="backBtn">返回設定</button></div>
   <h1>版本更新紀錄</h1>
-  <div class="meta">紀錄版本：v600.325<br>線上優先取得最新版；離線時顯示最後成功快取內容。</div>
+  <div class="meta">紀錄版本：v600.326<br>線上優先取得最新版；離線時顯示最後成功快取內容。</div>
   <div id="networkNotice" class="notice" hidden></div>
   <section id="list" aria-label="版本更新紀錄"></section>
 </main>
 <script>
+const CHANGELOG_V600326 = [{v:'v600.326',date:'2026-11',notes:["頁面切到背景時停止完整同步，並清除尚未觸發的 10 秒閒置同步計時器；回到前景後再由既有閒置機制重新排程，避免背景喚醒期間執行完整拉取、合併、存檔與重繪。","若背景期間仍有待上傳佇列，保留既有的輕量立即推送；離線、同步中、彈窗延後與五分鐘冷卻等既有防護不變。本版不修改 Supabase 或資料庫。"]}];
 const CHANGELOG_V600325 = [{v:'v600.325',date:'2026-11',notes:["客戶清單整併為單一入口：移除底部重複的「客戶管理」與「客戶整理工作台」按鈕；搜尋新增 ERP 編號比對，更多選單保留唯讀客戶資料檢查。舊遷移程式暫時保留相容性，但不再提供一般操作入口。","編輯聯絡資訊改為 iOS 分區式介面：客戶別名、電話、地址與聯絡備註分組顯示，各區直接新增，點選單筆後才出現編輯、移轉、刪除及預設地址操作。","檢視聯絡資訊完整維持 v600.324 現況，電話、FaceTime、Apple／Google 地圖、導航定位修正、聯絡備註與安全長按行為均不改變；本版不修改 Supabase 或資料庫。"]}];
 const CHANGELOG_V600324 = [{v:'v600.324',date:'2026-11',notes:["依實機使用回饋，檢視聯絡資訊恢復 v600.321 的緊湊列表、電話圖示與 Apple／Google 地圖配置；電話、地址、導航定位修正與聯絡備註的顯示方式回到原來樣式。","保留 v600.323 的安全長按：按住標題 1 秒、移動或捲動會取消，觸發後仍須確認才進入編輯。編輯聯絡資訊本版尚未改版，將另行討論。"]}];
 const CHANGELOG_V600323 = [{v:'v600.323',date:'2026-11',notes:["聯絡資訊改為簡潔分區：電話、地址與導航、聯絡備註各自成組；電話與地址放大顯示，撥號、FaceTime、Apple 地圖與 Google 地圖改為明確的大按鈕。","恢復長按客戶名稱進入編輯：必須持續按住 1 秒，移動或捲動超過 10px 會取消；觸發後仍須確認，才會開啟客戶管理的編輯聯絡資訊，檢視畫面本身不會修改資料。"]}];
@@ -867,7 +868,7 @@ const CHANGELOG = [{v:'v600.303',date:'2026-10',notes:["修正客戶資料盤點
   notes: ['修正：新增客戶時若名稱和已停用的詞相同，現在會正確解除停用並同步雲端（以前重新整理後會被打回停用）。']
 }];
 function escapeHtml(value){return String(value).replace(/[&<>"']/g,function(ch){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch];});}
-function render(){document.getElementById('list').innerHTML=CHANGELOG_V600325.concat(CHANGELOG_V600324,CHANGELOG_V600323,CHANGELOG_V600322,CHANGELOG_V600321,CHANGELOG_V600320,CHANGELOG_V600319,CHANGELOG_V600318,CHANGELOG_V600317,CHANGELOG_V600316,CHANGELOG_V600315,CHANGELOG_V600314,CHANGELOG_V600313,CHANGELOG_V600312,CHANGELOG_V600311,CHANGELOG_LATEST,CHANGELOG).map(function(c){return '<article class="entry"><div class="ver">'+escapeHtml(c.v)+(c.date?' <span class="date">'+escapeHtml(c.date)+'</span>':'')+'</div><ul>'+c.notes.map(function(n){return '<li>'+escapeHtml(n)+'</li>';}).join('')+'</ul></article>';}).join('');}
+function render(){document.getElementById('list').innerHTML=CHANGELOG_V600326.concat(CHANGELOG_V600325,CHANGELOG_V600324,CHANGELOG_V600323,CHANGELOG_V600322,CHANGELOG_V600321,CHANGELOG_V600320,CHANGELOG_V600319,CHANGELOG_V600318,CHANGELOG_V600317,CHANGELOG_V600316,CHANGELOG_V600315,CHANGELOG_V600314,CHANGELOG_V600313,CHANGELOG_V600312,CHANGELOG_V600311,CHANGELOG_LATEST,CHANGELOG).map(function(c){return '<article class="entry"><div class="ver">'+escapeHtml(c.v)+(c.date?' <span class="date">'+escapeHtml(c.date)+'</span>':'')+'</div><ul>'+c.notes.map(function(n){return '<li>'+escapeHtml(n)+'</li>';}).join('')+'</ul></article>';}).join('');}
 function updateNetworkNotice(){const el=document.getElementById('networkNotice');if(navigator.onLine){el.hidden=true;el.textContent='';el.classList.remove('offline');}else{el.hidden=false;el.textContent='目前離線，顯示裝置最後成功下載的更新紀錄。';el.classList.add('offline');}}
 document.getElementById('backBtn').addEventListener('click',function(){if(history.length>1)history.back();else location.href='./index.html';});
 window.addEventListener('online',updateNetworkNotice);window.addEventListener('offline',updateNetworkNotice);render();updateNetworkNotice();
