@@ -1,4 +1,7 @@
-// v600.326: 背景狀態停止完整同步與閒置計時；回前景後再重新排程；更新殼層快取版本。
+// v600.329: 更新殼層快取版本；主頁週期狀態更新限前景且不執行雲端紀元查詢。
+// v600.328: SWR 背景更新交由 fetch event.waitUntil() 承接，避免快取回應後 Worker 提前終止。
+// v600.327: 完整同步加入中央背景守門，旁路延後到回前景並閒置後補做。
+// v600.326: 背景狀態停止完整同步與閒置計時；回前景後再重新排程。
 // ============================================================
 // 宜修待辦 Supabase 世代 Service Worker（正式版 index.html 用）
 // v600.69: Stale-While-Revalidate（先舊後新）——解「長時間背景/導航後冷啟動變慢」。
@@ -12,7 +15,7 @@
 //          網址完全一致，否則會快取到舊網址、離線時反而讀不到(取不到，不是壞掉，只是
 //          白白浪費這格快取)。之後升級 supabase-js 版本時，這裡跟 index.html 要一起改。
 // ============================================================
-const CACHE_NAME = 'SUPAtodo-v600.326';   // 每次改版必同步 bump
+const CACHE_NAME = 'SUPAtodo-v600.329';   // 每次改版必同步 bump
 // 程式殼層:SWR(先快取秒開,背景更新);首次無快取時走網路
 const SHELL_ASSETS = [
   './',
@@ -84,17 +87,26 @@ self.addEventListener('fetch', e => {
   }
   // 程式殼層:Stale-While-Revalidate——有快取就秒回,同時背景抓新版更新快取(下次生效)
   if (isShellRequest(req)) {
-    e.respondWith((async () => {
+    // v600.328：在 fetch 事件仍處於 dispatch 期間立即登錄 waitUntil。
+    // 即使 respondWith 很快回傳快取，Worker 仍會等待背景抓取與 cache.put 完成。
+    const fetchAndUpdate = (async () => {
       const cache = await caches.open(CACHE_NAME);
+      let fresh = null;
+      try {
+        fresh = await fetch(req, { cache: 'no-store' });
+      } catch (_) {
+        return null;
+      }
+      if (fresh && fresh.ok) {
+        try { await cache.put(req, fresh.clone()); } catch (_) {}
+      }
+      return fresh;
+    })();
+    e.waitUntil(fetchAndUpdate.then(() => undefined));
+    e.respondWith((async () => {
       const cached = await caches.match(req, { ignoreSearch: true });
-      // 背景抓新版(不擋當前顯示):成功就更新快取,供「下次開啟」使用
-      const fetchAndUpdate = fetch(req, { cache: 'no-store' }).then(fresh => {
-        if (fresh && fresh.ok) cache.put(req, fresh.clone()).catch(() => {});
-        return fresh;
-      }).catch(() => null);
-      // 有快取 → 立刻回快取(秒開),背景更新自己跑
+      // 有快取 → 立刻回快取(秒開)，背景更新由 waitUntil 保持 Worker 存活
       if (cached) {
-        fetchAndUpdate;   // 不 await,背景進行
         return cached;
       }
       // 無快取(首次/快取被清) → 等網路,拿到順手存
