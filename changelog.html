@@ -16,11 +16,12 @@
 <main>
   <div class="top"><button class="back" type="button" id="backBtn">返回設定</button></div>
   <h1>版本更新紀錄</h1>
-  <div class="meta">紀錄版本：v600.333<br>線上優先取得最新版；離線時顯示最後成功快取內容。</div>
+  <div class="meta">紀錄版本：v600.334<br>線上優先取得最新版；離線時顯示最後成功快取內容。</div>
   <div id="networkNotice" class="notice" hidden></div>
   <section id="list" aria-label="版本更新紀錄"></section>
 </main>
 <script>
+const CHANGELOG_V600334 = [{v:'v600.334',date:'2026-11',notes:["首次安裝 Service Worker 接管頁面時不自動重載；既有 Service Worker 版本更新時，共用一次重載狀態，控制權變更取消延後計時器，避免同頁重複重載。","正式站更新既有監聽並修正首次接管；不修改任務資料、Supabase 或資料庫。正式版候選尚未發布。"]}];
 const CHANGELOG_V600333 = [{v:'v600.333',date:'2026-11',notes:["完整同步進行中收到網路恢復時，保留這次強制補同步要求；本輪結束後回到前景並閒置 10 秒再補做，不受一般 5 分鐘冷卻略過。","同步中關閉彈窗或暫時離線時不提前清除待補要求；背景期間仍不啟動完整拉取。"]}];
 const CHANGELOG_V600332 = [{v:'v600.332',date:'2026-11',notes:["任務與客戶待傳操作建立時立即保存操作紀錄，降低程式在原有 300 毫秒延後寫入期間結束後遺失操作的風險。","本機操作紀錄寫入失敗時保留待傳復原資料並提示；雲端確認後先保存收據再核銷，儲存未完成時暫停後續推送。","同步資料格式與正式 Supabase 資料庫不變。"]}];
 const CHANGELOG_V600331 = [{v:'v600.331',date:'2026-11',notes:["背景中恢復網路時，保留待補完整同步標記；回到前景並閒置 10 秒後補做，避免被一般 5 分鐘冷卻略過。","背景期間不啟動完整拉取；待傳資料維持既有輕量推送，其他同步及資料格式不變。"]}];
@@ -875,7 +876,7 @@ const CHANGELOG = [{v:'v600.303',date:'2026-10',notes:["修正客戶資料盤點
   notes: ['修正：新增客戶時若名稱和已停用的詞相同，現在會正確解除停用並同步雲端（以前重新整理後會被打回停用）。']
 }];
 function escapeHtml(value){return String(value).replace(/[&<>"']/g,function(ch){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch];});}
-function render(){document.getElementById('list').innerHTML=CHANGELOG_V600333.concat(CHANGELOG_V600332,CHANGELOG_V600331,CHANGELOG_V600330,CHANGELOG_V600329,CHANGELOG_V600328,CHANGELOG_V600327,CHANGELOG_V600326,CHANGELOG_V600325,CHANGELOG_V600324,CHANGELOG_V600323,CHANGELOG_V600322,CHANGELOG_V600321,CHANGELOG_V600320,CHANGELOG_V600319,CHANGELOG_V600318,CHANGELOG_V600317,CHANGELOG_V600316,CHANGELOG_V600315,CHANGELOG_V600314,CHANGELOG_V600313,CHANGELOG_V600312,CHANGELOG_V600311,CHANGELOG_LATEST,CHANGELOG).map(function(c){return '<article class="entry"><div class="ver">'+escapeHtml(c.v)+(c.date?' <span class="date">'+escapeHtml(c.date)+'</span>':'')+'</div><ul>'+c.notes.map(function(n){return '<li>'+escapeHtml(n)+'</li>';}).join('')+'</ul></article>';}).join('');}
+function render(){document.getElementById('list').innerHTML=CHANGELOG_V600334.concat(CHANGELOG_V600333,CHANGELOG_V600332,CHANGELOG_V600331,CHANGELOG_V600330,CHANGELOG_V600329,CHANGELOG_V600328,CHANGELOG_V600327,CHANGELOG_V600326,CHANGELOG_V600325,CHANGELOG_V600324,CHANGELOG_V600323,CHANGELOG_V600322,CHANGELOG_V600321,CHANGELOG_V600320,CHANGELOG_V600319,CHANGELOG_V600318,CHANGELOG_V600317,CHANGELOG_V600316,CHANGELOG_V600315,CHANGELOG_V600314,CHANGELOG_V600313,CHANGELOG_V600312,CHANGELOG_V600311,CHANGELOG_LATEST,CHANGELOG).map(function(c){return '<article class="entry"><div class="ver">'+escapeHtml(c.v)+(c.date?' <span class="date">'+escapeHtml(c.date)+'</span>':'')+'</div><ul>'+c.notes.map(function(n){return '<li>'+escapeHtml(n)+'</li>';}).join('')+'</ul></article>';}).join('');}
 function updateNetworkNotice(){const el=document.getElementById('networkNotice');if(navigator.onLine){el.hidden=true;el.textContent='';el.classList.remove('offline');}else{el.hidden=false;el.textContent='目前離線，顯示裝置最後成功下載的更新紀錄。';el.classList.add('offline');}}
 document.getElementById('backBtn').addEventListener('click',function(){if(history.length>1)history.back();else location.href='./index.html';});
 window.addEventListener('online',updateNetworkNotice);window.addEventListener('offline',updateNetworkNotice);render();updateNetworkNotice();
