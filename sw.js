@@ -1,3 +1,4 @@
+// v600.335: 啟用時只清理正式站舊版快取，保留測試站及其他同源快取。
 // v600.334: 首次接管不重載，更新至多重載一次；更新正式版殼層快取。
 // v600.333: 同步中網路恢復保留強制補同步，更新正式版殼層快取。
 // v600.332: 新任務與客戶 op 即時持久化；更新正式版殼層快取。
@@ -20,7 +21,7 @@
 //          網址完全一致，否則會快取到舊網址、離線時反而讀不到(取不到，不是壞掉，只是
 //          白白浪費這格快取)。之後升級 supabase-js 版本時，這裡跟 index.html 要一起改。
 // ============================================================
-const CACHE_NAME = 'SUPAtodo-v600.334';   // 每次改版必同步 bump
+const CACHE_NAME = 'SUPAtodo-v600.335';   // 每次改版必同步 bump
 // 程式殼層:SWR(先快取秒開,背景更新);首次無快取時走網路
 const SHELL_ASSETS = [
   './',
@@ -49,7 +50,7 @@ self.addEventListener('install', e => {
 self.addEventListener('activate', e => {
   e.waitUntil((async () => {
     const keys = await caches.keys();
-    await Promise.all(keys.map(k => (k !== CACHE_NAME ? caches.delete(k) : null)));
+    await Promise.all(keys.map(k => (k.startsWith('SUPAtodo-v') && k !== CACHE_NAME ? caches.delete(k) : null)));
     await self.clients.claim();
   })());
 });
