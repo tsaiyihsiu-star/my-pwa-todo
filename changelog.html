@@ -16,11 +16,12 @@
 <main>
   <div class="top"><button class="back" type="button" id="backBtn">返回設定</button></div>
   <h1>版本更新紀錄</h1>
-  <div class="meta">紀錄版本：v600.344<br>線上優先取得最新版；離線時顯示最後成功快取內容。</div>
+  <div class="meta">紀錄版本：v600.347<br>線上優先取得最新版；離線時顯示最後成功快取內容。</div>
   <div id="networkNotice" class="notice" hidden></div>
   <section id="list" aria-label="版本更新紀錄"></section>
 </main>
 <script>
+const CHANGELOG_V600347 = [{v:'v600.347',date:'2026-11',notes:["照片來源或 Canvas 處理錯誤時結束等待、顯示圖片處理失敗，並釋放暫存圖片 URL。","照片載入 60 秒沒有回應時也會結束等待並清理暫存資源。"]}];
 const CHANGELOG_V600344 = [{v:'v600.344',date:'2026-11',notes:["聯絡資訊標題長按在頁面切到背景、離開或關閉檢視時取消；返回及重開後不會跳出舊的編輯確認。"]}];
 const CHANGELOG_V600343 = [{v:'v600.343',date:'2026-11',notes:["到場選單關閉或重開時清理外部點擊監聽器與延遲安裝計時器。","任務與新增按鈕長按在切到背景或離開頁面時取消；任務、客戶推送及 ERP 健康查詢失敗時清除逾時計時器。"]}];
 const CHANGELOG_V600342 = [{v:'v600.342',date:'2026-11',notes:["照片待傳狀態計入顯示；回前景及網路恢復後補傳。","未儲存草稿不提前上傳；Drive 上傳重試沿用預留檔案 ID，減少重複照片。"]}];
@@ -885,7 +886,7 @@ const CHANGELOG = [{v:'v600.303',date:'2026-10',notes:["修正客戶資料盤點
   notes: ['修正：新增客戶時若名稱和已停用的詞相同，現在會正確解除停用並同步雲端（以前重新整理後會被打回停用）。']
 }];
 function escapeHtml(value){return String(value).replace(/[&<>"']/g,function(ch){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch];});}
-function render(){document.getElementById('list').innerHTML=CHANGELOG_V600344.concat(CHANGELOG_V600343,CHANGELOG_V600342,CHANGELOG_V600341,CHANGELOG_V600340,CHANGELOG_V600338,CHANGELOG_V600337,CHANGELOG_V600336,CHANGELOG_V600335,CHANGELOG_V600334,CHANGELOG_V600333,CHANGELOG_V600332,CHANGELOG_V600331,CHANGELOG_V600330,CHANGELOG_V600329,CHANGELOG_V600328,CHANGELOG_V600327,CHANGELOG_V600326,CHANGELOG_V600325,CHANGELOG_V600324,CHANGELOG_V600323,CHANGELOG_V600322,CHANGELOG_V600321,CHANGELOG_V600320,CHANGELOG_V600319,CHANGELOG_V600318,CHANGELOG_V600317,CHANGELOG_V600316,CHANGELOG_V600315,CHANGELOG_V600314,CHANGELOG_V600313,CHANGELOG_V600312,CHANGELOG_V600311,CHANGELOG_LATEST,CHANGELOG).map(function(c){return '<article class="entry"><div class="ver">'+escapeHtml(c.v)+(c.date?' <span class="date">'+escapeHtml(c.date)+'</span>':'')+'</div><ul>'+c.notes.map(function(n){return '<li>'+escapeHtml(n)+'</li>';}).join('')+'</ul></article>';}).join('');}
+function render(){document.getElementById('list').innerHTML=CHANGELOG_V600347.concat(CHANGELOG_V600344,CHANGELOG_V600343,CHANGELOG_V600342,CHANGELOG_V600341,CHANGELOG_V600340,CHANGELOG_V600338,CHANGELOG_V600337,CHANGELOG_V600336,CHANGELOG_V600335,CHANGELOG_V600334,CHANGELOG_V600333,CHANGELOG_V600332,CHANGELOG_V600331,CHANGELOG_V600330,CHANGELOG_V600329,CHANGELOG_V600328,CHANGELOG_V600327,CHANGELOG_V600326,CHANGELOG_V600325,CHANGELOG_V600324,CHANGELOG_V600323,CHANGELOG_V600322,CHANGELOG_V600321,CHANGELOG_V600320,CHANGELOG_V600319,CHANGELOG_V600318,CHANGELOG_V600317,CHANGELOG_V600316,CHANGELOG_V600315,CHANGELOG_V600314,CHANGELOG_V600313,CHANGELOG_V600312,CHANGELOG_V600311,CHANGELOG_LATEST,CHANGELOG).map(function(c){return '<article class="entry"><div class="ver">'+escapeHtml(c.v)+(c.date?' <span class="date">'+escapeHtml(c.date)+'</span>':'')+'</div><ul>'+c.notes.map(function(n){return '<li>'+escapeHtml(n)+'</li>';}).join('')+'</ul></article>';}).join('');}
 function updateNetworkNotice(){const el=document.getElementById('networkNotice');if(navigator.onLine){el.hidden=true;el.textContent='';el.classList.remove('offline');}else{el.hidden=false;el.textContent='目前離線，顯示裝置最後成功下載的更新紀錄。';el.classList.add('offline');}}
 document.getElementById('backBtn').addEventListener('click',function(){if(history.length>1)history.back();else location.href='./index.html';});
 window.addEventListener('online',updateNetworkNotice);window.addEventListener('offline',updateNetworkNotice);render();updateNetworkNotice();
